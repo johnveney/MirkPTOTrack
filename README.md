@@ -61,7 +61,7 @@ To mannually install, follow steps below....
 ### *Setup inside project to run*
 1. Launch Visual Studio Code
 2. Start new Terminal Window
-3. Make sure you are in the root of your project (ie: c:\reactwork\Radish\)
+3. Make sure you are in the root of your project (ie: c:\websites\MIRKPTOTrack\)
 4. Run command: **npm install**
 5. Run command: **npm install mongodb --save**  -- install mondgo db support
 7. Run command: **npm install -g nodemon** -- option run server w/o restaring for each change. (use script)

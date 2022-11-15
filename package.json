@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/johnveney/MirkPTOTrack/issues"
   },
-  "homepage": "https://github.com/johnveney/MirkPTOTrack#readme"
+  "homepage": "https://github.com/johnveney/MirkPTOTrack#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }

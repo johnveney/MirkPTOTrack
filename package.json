@@ -4,7 +4,13 @@
   "description": "MIRK! PTO Tracker",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start Radish Server": "node server/index.js",
+    "start Radish FrontEnd": "cd client && npm start",
+    "nodemon Radish Server": "nodemon -r dotenv/config --watch server server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm install && npm run build",
+    "update npm": "echo \"Updates root and client\" && npm update && cd client && npm update",
+    "install packages": "npm install && npm install mongodb --save && npm i --save mongo-image-converter &&npm install -g nodemon && npm install @googlemaps/google-maps-services-js && npm install dotenv -- save && npm install googleapis && npm install @googleapis/people && npm install --save @sendgrid/mail && npm install twilio && echo \"SERVER Packages Installed \" && cd client && npm install && npm install -g typescript && npm i hookrouter --legacy-peer-deps && npm i @types/hookrouter && npm install -i @foursquare/foursquare-places  && npm install react-phone-input-2 --save && npm install --save react-cropper && npx browserslist --update-db && npm install idb && echo \"Client Packages Installed \" "
   },
   "repository": {
     "type": "git",
@@ -19,7 +25,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongodb": "^4.11.0",
+    "mongodb": "^4.12.1",
     "save": "^2.9.0"
   }
 }

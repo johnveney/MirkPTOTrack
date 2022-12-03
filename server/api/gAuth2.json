@@ -1,0 +1,19 @@
+{
+    "web": {
+        "temp":"THIS FILE CURRENTLY UNUSED",
+        "client_id": "803738271986-l4tr8j58s7rm30b5o4c1oepf0b0j349q.apps.googleusercontent.com",
+        "project_id": "peopleapi-321014",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "eDpi6UZetr3B0I0Z-laiq78H",
+        "redirect_uris": [
+            "http://localhost:3000/googlecontactstemp",
+            "https://radishapp.herokuapp.com/googlecontactstemp"
+        ],
+        "javascript_origins": [
+            "http://localhost:3000",
+            "https://radishapp.herokuapp.com"
+        ]
+    }
+}

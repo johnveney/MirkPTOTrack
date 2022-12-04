@@ -2,7 +2,7 @@ const winston = require('winston');
 require('winston-mongodb');
 
 /* LOCAL DATABASE */
-const connectstring = "mongodb://127.0.0.1:27017/radish1?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
+const connectstring = "mongodb://127.0.0.1:27017/MirkData?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
 
 // CONNECT TO THE SERVER USING A CONNECTION STRING FROM ABOVE
 const DB_URL = (process.env.MONGODB_URI || connectstring);

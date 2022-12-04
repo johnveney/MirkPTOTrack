@@ -48,13 +48,13 @@ const client = new MongoClient(url, {
 
 // The database to use on server
 
-const dbName = "radish1";
+const dbName = "MirkData";
 global.db = null;
 async function connectMongo() {
   try {
     await client.connect();
     const date = new Date();
-    log({ level: "info", message: `Connected correctly to server ${date}` });
+    log({ level: "info", message: `Connected correctly to server ${dbName} at ${date}` });
     // console.log("serverURL: "+url);
     db = client.db(dbName);
   } catch (err) {

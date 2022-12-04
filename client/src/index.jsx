@@ -7,7 +7,7 @@ import {
   useRef,
   useCallback,
 } from "react";
-//import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 //import "variables.css";
 //import "App.css";
 //import "MobileApp.css";
@@ -34,8 +34,11 @@ import {
   import("Components/MobileApp/UserSettings/NotificationSettings")
 ); */
 //const PageNotFound = lazy(() => import("Components/PageNotFound"));
-
 function MainArea() {
+ return(<div>Hello Dave !</div>);
+}
+
+function MainArea1() {
   const routeResult = useRoutes(routes);
   const { token } = useToken();
   const { currentUser, setUser } = useContext(AppContext);
@@ -111,7 +114,6 @@ function MainArea() {
     } else if (path === "/signup") {
       //Public Sign Up Page. No auth token needed
       setSignUp(true);
-
     } else if (path.includes("/notificationsettingsbyemail")) {
       // Get notification preferences page. No auth token needed
       // Get person id from path
@@ -192,7 +194,7 @@ function MainArea() {
 
   if (rateEvent) {
     // this is public. no auth needed
-    return <ComponentWrapper component={<RateEvent />} />
+    return <ComponentWrapper component={<RateEvent />} />;
   }
   if (forgotPwd) {
     /* forgot password. no auth needed */
@@ -234,8 +236,11 @@ function MainArea() {
     return <ComponentWrapper component={<PageNotFound />} />;
   }
 
+ 
+
   return (
     <div ref={outerWrapper} className="mobile">
+      <p>hello dave</p>
       <div ref={appWrapper} id="app-wrapper" className="radish-mobile">
         <Suspense fallback={<span></span>}>
           <LeftMenu orgID={activeOID} />
@@ -252,29 +257,9 @@ function MainArea() {
 }
 
 ReactDOM.render(
-  <AppContextProvider>
+ /*  <AppContextProvider>
     <MainArea />
-  </AppContextProvider>,
+  </AppContextProvider>, */
+  <MainArea />,
   document.getElementById("root")
 );
-
-/* THIS SECTION OF CODE LOADS THE SERVICE WORKER   COMMENT OUT IF YOU DONT WANT A SERVICE WORKER */
-/* if (!isLocalhost) {
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
-      navigator.serviceWorker.register("serviceworker.js").then(
-        function (registration) {
-          // Registration was successful
-          console.log(
-            "ServiceWorker registration successful with scope: ",
-            registration.scope
-          );
-        },
-        function (err) {
-          // registration failed :(
-          console.log("ServiceWorker registration failed: ", err);
-        }
-      );
-    });
-  }
-} */

@@ -9,7 +9,7 @@
   "description": "Mirk PTO Tracking Application",
   "main": "index.js",
   "scripts": {
-    "start Radish": "npm start",
+    "start MIRK": "npm start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

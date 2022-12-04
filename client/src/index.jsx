@@ -8,6 +8,7 @@ import {
   useCallback,
 } from "react";
 import ReactDOM from "react-dom";
+//import EULA from "components/EULA";
 //import "variables.css";
 //import "App.css";
 //import "MobileApp.css";
@@ -35,7 +36,7 @@ import ReactDOM from "react-dom";
 ); */
 //const PageNotFound = lazy(() => import("Components/PageNotFound"));
 function MainArea() {
- return(<div>Hello Dave !</div>);
+ return(<div>Hello Dave ! </div>);
 }
 
 function MainArea1() {

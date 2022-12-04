@@ -1,14 +1,41 @@
 {
-  "name": "client",
+  "name": "mirk-pto-app",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "proxy": "http://localhost:3001",
+  "engines": {
+    "node": "16.13.2"
+  },
+  "description": "Mirk PTO Tracking Application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start Radish": "npm start",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "install packages": " echo \"installing client packages... \" && npm install && npm install -g typescript && npm i hookrouter --force && npm i @types/hookrouter && npm install -i @foursquare/foursquare-places  && npm install react-phone-input-2 --save && npm install --save react-cropper  && npm install idb && npm i moment-timezone --save && npx browserslist --update-db && echo \"Client Packages Installed \" "
   },
-  "author": "",
+  "author": "John Veney",
   "license": "ISC",
   "dependencies": {
-    "moment-timezone": "^0.5.39"
-  }
+    "moment-timezone": "^0.5.39",
+    "react-scripts": "^5.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "prettier": "2.5.1"
+  },
+  "homepage": "/"
 }

@@ -3,7 +3,7 @@ CHANGES IN THIS FILE DO NOT CHANGE
 PRODUCTION DAILY DIGEST
 GO TO digestData.js AND COPY DISIRED CHANGES FROM HERE TO THERE */
 
-const moment = require("moment-timezone");
+//const moment = require("moment-timezone");
 const events = require("./events.js");
 const constants = require("../utilities/constants.js");
 const emailTemplates = require("../utilities/emailTemplates.js");
@@ -29,7 +29,7 @@ async function getDailyDigest(params) {
     let start;
     let end;
     let view = "future";
-    const timeZone = person.default_timezone || "America/New_York";
+    //const timeZone = person.default_timezone || "America/New_York";
     let headerText;
     let invitedOnly;
 

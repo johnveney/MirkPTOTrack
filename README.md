@@ -66,6 +66,8 @@ To mannually install, follow steps below....
 5. Run command: **npm install mongodb --save**  -- install mondgo db support
 7. Run command: **npm install -g nodemon** -- option run server w/o restaring for each change. (use script)
 9. Run command: **npm install dotenv -- save**
+14.Run command: **npm i winston**
+15.Run command: **npm i winston-mongodb**
 
 ######
 1. Change directory to client.  (ie: **c:\reactwork\Radish\client**)

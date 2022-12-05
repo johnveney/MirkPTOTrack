@@ -8,6 +8,10 @@ import {
   useCallback,
 } from "react";
 import ReactDOM from "react-dom";
+//const outerWrapper = useRef(null);
+const PageNotFound = lazy(() => import("./components/PageNotFound"));
+//import { useRoutes } from "hookrouter";
+//import routes from "Router";
 //import EULA from "components/EULA";
 //import "variables.css";
 //import "App.css";
@@ -35,8 +39,47 @@ import ReactDOM from "react-dom";
   import("Components/MobileApp/UserSettings/NotificationSettings")
 ); */
 //const PageNotFound = lazy(() => import("Components/PageNotFound"));
+
+/* function ComponentWrapper({ component }) {
+  return (
+    <div ref={outerWrapper} className="mobile">
+      <div ref={appWrapper} id="app-wrapper" className="radish-mobile">
+        <Suspense fallback={<span></span>}>{component}</Suspense>
+      </div>
+    </div>
+  );
+}
+<ComponentWrapper component={<PageNotFound />} />; */
+
 function MainArea() {
- return(<div>Hello Dave ! </div>);
+  return (
+    <div>
+      <div>Hello Dave ! </div>
+      <div id="data">
+        <Suspense fallback={<span></span>}>
+          <PageNotFound />
+        </Suspense>
+      </div>
+    </div>
+  );
+}
+
+function MainArea2() {
+  return (
+    <div ref={outerWrapper} className="mobile">
+      <div ref={appWrapper} id="app-wrapper" className="radish-mobile">
+        <Suspense fallback={<span></span>}>
+          <LeftMenu orgID={activeOID} />
+          {routeResult}
+        </Suspense>
+        {mainScreens.indexOf(document.location.pathname) > -1 ? (
+          <Suspense fallback={<span></span>}>
+            <PageNotFound />
+          </Suspense>
+        ) : null}
+      </div>
+    </div>
+  );
 }
 
 function MainArea1() {
@@ -237,11 +280,8 @@ function MainArea1() {
     return <ComponentWrapper component={<PageNotFound />} />;
   }
 
- 
-
   return (
     <div ref={outerWrapper} className="mobile">
-      <p>hello dave</p>
       <div ref={appWrapper} id="app-wrapper" className="radish-mobile">
         <Suspense fallback={<span></span>}>
           <LeftMenu orgID={activeOID} />
@@ -258,10 +298,10 @@ function MainArea1() {
 }
 
 ReactDOM.render(
- /*  <AppContextProvider>
-    <MainArea />
-  </AppContextProvider>, */
-/*   <EULA />, */
+  /*  <AppContextProvider>
+     <MainArea />
+   </AppContextProvider>, */
+  /*   <EULA />, */
   <MainArea />,
   document.getElementById("root")
 );

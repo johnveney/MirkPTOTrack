@@ -1,0 +1,11 @@
+
+@import "variables.css";
+
+.react-tel-input input.form-control {
+    width: 100%;
+    font-size: var(--border-size);   
+    padding: .5rem;
+    padding-left: 48px;
+    border-radius: 3px;
+    height: auto;
+}

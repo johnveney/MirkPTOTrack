@@ -1,0 +1,61 @@
+:root {
+  --primary-red: #9c1459;
+  --primary-dark-red: #9C1459;
+  --primary-red-rgb: 156, 20, 89;
+  --brand-teal: #55C3AC;
+  --brand-light-teal: #c5fff3;
+  --brand-teal-rgb: 85, 195, 172;
+  --brand-lighter-blue: #d9f5ff;
+  --brand-light-blue: #3DCBFF;
+  --brand-medium-blue: #00b2f3;
+  --brand-peach: rgb(245,128,92);
+  --brand-pink: #ED5499;
+  --brand-light: #F7C4DB;
+  --ui-state-success: #077D65;
+  --deep-blue: #11323E;
+  --blue-bg: #cbeefa;
+  --neutral-0: #ffffff;
+  --neutral-1: #F4F6F9;
+  --neutral-2: #faecf3;
+  --neutral-3: #E8EDF2;
+  --neutral-4: #C3CAD6;
+  --neutral-5: #7D8B9F;
+  --neutral-6: #19465E;
+  --neutral-7: #11323E;
+  --body-color: #11323e;
+  --badge3-light: #EF9293;
+  --border-color: #dbdde0;
+  --border-light-color: #ebebeb;
+  --warning-color: red;
+  --warning-bg: rgb(245, 214, 214);
+  --caution-color: rgb(228, 194, 4);
+  --caution-bg: rgb(238, 235, 218);
+  --fa-icon-color: #0094ff;
+
+  --primary-family: "Work Sans";
+
+  --body-size: 16px;
+  --small-size: 14px;
+  --smaller-size: 12px;
+  --smallest-size: 10px;
+  --medium-size: 18px;
+  --large-size: 20px;
+  --larger-size: 24px;
+  --largest-size: 32px;
+  --oversize: 70px;
+  --body-bold: 600;
+  --body-line-height: 22px;
+
+  --left-menu-width: 100px;
+  --left-menu-item-height: 80px;
+
+  --h1-size: 36px;
+  --h1-weight: Regular;
+  --h1-family: var(--primary-family);
+  --h1-letter-spacing: 25%;
+  --h1-line-height: 38px;
+  --h1-color: var(--body-color);
+  --h1-margin: 0 0 .25rem 0;
+
+  --box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}

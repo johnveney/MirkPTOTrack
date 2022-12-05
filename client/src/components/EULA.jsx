@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { slideScreen } from "Tools";
+import { slideScreen } from "../Tools";
 
 function EULA() {
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ function EULA() {
   return (
     <div
       ref={outerWrapper}
-      className="main-panel p-bottom-4 bg-neutral-1 hide-right"
+      className="main-panel p-bottom-4 bg-neutral-1 "
     >
       <header className="p-1 p-top-2 flex-align-items-center bg-white">
         <h2>
@@ -46,7 +46,7 @@ function EULA() {
       {loading ? (
         <div className="dot-bricks"></div>
       ) : (
-        <div ref={wrapper} className="body p-2 fade">
+        <div ref={wrapper} className="body p-2 fade-in">
           <h1>End-User License Agreement (&quot;Agreement&quot;)</h1>
           <p>Last updated: January 14, 2022</p>
           <p className="p-top-1">

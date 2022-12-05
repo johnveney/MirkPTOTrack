@@ -10,14 +10,15 @@ import {
 import ReactDOM from "react-dom";
 //const outerWrapper = useRef(null);
 const PageNotFound = lazy(() => import("./components/PageNotFound"));
+const EULA = lazy(() => import("./components/EULA"));
 //import { useRoutes } from "hookrouter";
 //import routes from "Router";
 //import EULA from "components/EULA";
-//import "variables.css";
-//import "App.css";
-//import "MobileApp.css";
-//import "Tools.css";
-//import "Overrides.css";
+import "./variables.css";
+import "./App.css";
+import "./MobileApp.css";
+import "./Tools.css";
+import "./Overrides.css";
 //import { AppContextProvider } from "Context/AppContext.jsx";
 //import { AppContext } from "Context/AppContext";
 //import { useRoutes } from "hookrouter";
@@ -58,6 +59,7 @@ function MainArea() {
       <div id="data">
         <Suspense fallback={<span></span>}>
           <PageNotFound />
+          <EULA />
         </Suspense>
       </div>
     </div>

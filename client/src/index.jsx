@@ -261,6 +261,7 @@ ReactDOM.render(
  /*  <AppContextProvider>
     <MainArea />
   </AppContextProvider>, */
+/*   <EULA />, */
   <MainArea />,
   document.getElementById("root")
 );

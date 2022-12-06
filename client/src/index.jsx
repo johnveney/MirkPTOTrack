@@ -11,6 +11,7 @@ import ReactDOM from "react-dom";
 //const outerWrapper = useRef(null);
 const PageNotFound = lazy(() => import("./components/PageNotFound"));
 const EULA = lazy(() => import("./components/EULA"));
+const InOut = lazy(() => import("./components/InOut"));
 //const InOut = lazy(() => import("./components/InOut"));
 //import { useRoutes } from "hookrouter";
 //import routes from "Router";
@@ -58,9 +59,9 @@ function MainArea() {
     <div>
       <div>Hello Dave ! </div>
       <div id="data">
-        <Suspense fallback={<span></span>}>
+        <Suspense fallback={<span>error</span>}>
           <PageNotFound />
-          <EULA />
+           <InOut /> 
         </Suspense>
       </div>
     </div>

@@ -166,6 +166,10 @@ select.select1 {
   margin-left: var(--left-menu-width, 100px);
 }
 
+.radish-icon-24 {
+  width: 24px;
+}
+
 .radish-icon-small {
   max-width: 75px;
 }
@@ -1843,22 +1847,28 @@ span.back-chevron {
   font-weight: bold;
 }
 .table-2 thead tr {
-  background-color:darkslategray
+  background-color:#006338;
+  color:white;
 }
 
 .table-2 .location {
-  background-color: beige;
+  background-color: rgb(245, 245, 199);
+  font-weight: bold;
 }
 
 .table-2 th,
 .table-2 td {
   border: 1px solid silver;
-  padding: 0.5em 0.25em;
+  padding: 0.35em 0.50em;
 }
 .tr_reverse {
-  background-color: rgb(230, 255, 243);
+  background-color: #d1fce9;
 }
 .td_status {
+  text-align: center;
+  max-width: 75px;
+}
+.td_contact {
   text-align: center;
   max-width: 75px;
 }

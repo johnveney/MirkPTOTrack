@@ -12,16 +12,6 @@ const connectstring ="mongodb+srv://jveney:Mirk8069@cluster0.te39hd1.mongodb.net
 // CONNECT TO THE SERVER USING A CONNECTION STRING FROM ABOVE
 const url = process.env.MONGODB_URI || connectstring;
 
-// Replace the following with your Atlas connection string...d
-/* SERVER CONNECTION STRING(S) */
-/* const url =
-  process.env.MONGODB_URI || 
-  "mongodb+srv://avaeth:Monkeyisland911!@cluster0.h9z4r.mongodb.net/radish1?retryWrites=true&w=majority"; */
-
-/* LOCAL CONNECTION STRING */
-/*  const url =
-  process.env.MONGODB_URI || 
-  "mongodb://127.0.0.1:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false"; */
 
 const client = new MongoClient(url, {
   useNewUrlParser: true,

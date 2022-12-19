@@ -1,6 +1,7 @@
 const log = require("./logger.js").insertServerLogs;
 
 async function getInOutBoard(params) {
+  console.log('getInOutBoard called from InOut.js')
   try {
     const query = {
       org_id: params.org_id,

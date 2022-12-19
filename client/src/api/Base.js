@@ -1,8 +1,8 @@
-import authHeader from "API/AuthHeader";
-import { navigate } from "hookrouter";
+import authHeader from "./AuthHeader";
+//import { navigate } from "hookrouter";
 //import { openDB } from "idb";
 
-import { logout } from "Tools";
+import { logout } from "../Tools";
 
 const loginUser = async (credentials) => {
   const response = fetch("/login", {

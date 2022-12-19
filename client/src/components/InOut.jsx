@@ -1,26 +1,60 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { slideScreen } from "../Tools";
+import baseClient from "../api/Base";
 import teamchat from "../graphics/Teams-24x24.png";
 import newemail from "../graphics/email.png";
 import newphone from "../graphics/phone.png";
 
 function InOut() {
-  const [loading, setLoading] = useState(false);
+  const [inOutBoard, setInOutBoard] = useState();
+  const [loading, setLoading] = useState(true);
+  const [errMessage, setErrMessage] = useState();
   const wrapper = useRef(null);
   const outerWrapper = useRef(null);
+ // const [errorMsg] = useState(null);
   const colspan = 4;
 
-  useEffect(() => {
-    const getData = async () => {
-      //ADD DATA CALL STUFF HERE
+  const getInoutBoard = useCallback(async () => {
+    try {
+      //mainWrapper.current.classList.remove("fade-in");
       setLoading(true);
-      //GO GET DATA...
-
-      //HANDLE SLIDEIN
-      slideScreen(outerWrapper.current, wrapper, setLoading);
-    };
-    getData();
+    //  setAddPlaceType(false);
+    //  setPlaceTypeId(null);
+      const model = {};
+      const placetypeData = await baseClient.APIPost({
+        model: model,
+        api: "inoutboard",
+      });
+      if (myInOutBoard.data) {
+        setInOutBoard(myInOutBoard.data);
+      }
+      if (myInOutBoard.message && myInOutBoard.message !== "ok") {
+        console.error(myInOutBoard.message);
+        setErrMessage(myInOutBoard.message);
+      }
+      setTimeout(() => {
+        setLoading(false);
+        //fadeIn(mainWrapper.current);
+      }, 400);
+    } catch (err) {
+      console.error(err.message);
+      setErrMessage(err.message);
+      setTimeout(() => {
+        setLoading(false);
+      //  fadeIn(mainWrapper.current);
+      }, 400);
+    }
   }, []);
+
+  useEffect(() => {
+    try {
+      getInoutBoard();
+    } catch (err) {
+      console.error(err.message);
+      setErrMessage(err.message);
+    }
+  }, [getInoutBoard]);
+
 
   return (
     <div ref={outerWrapper} className="main-panel p-bottom-4 bg-neutral-1 ">
@@ -48,25 +82,25 @@ function InOut() {
         <div className="dot-bricks"></div>
       ) : (
         <div ref={wrapper} className="body p-2 fade-in">
-          <table class="table-2">
+          <table className="table-2">
             <thead>
               <tr>
                 <th>Employee</th>
-                <th class="td_status">Status</th>
+                <th className="td_status">Status</th>
                 <th>Contact</th>
                 <th>Notes</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="location" colspan={colspan}>
-                <td colspan={colspan}>CORPORATE</td>
+              <tr className="location" colSpan={colspan}>
+                <td colSpan={colspan}>CORPORATE</td>
               </tr>
               <tr>
-                <td class="td_first">Baker, Tina</td>
-                <td class="td_status">Vacation</td>
-                <td class="td_contact">
+                <td className="td_first">Baker, Tina</td>
+                <td className="td_status">Vacation</td>
+                <td className="td_contact">
                   <a
-                    class="contact_anchor"
+                    className="contact_anchor"
                     target="tbakerchat"
                     title="Chat via Teams"
                     href="https://teams.microsoft.com/l/chat/0/0?users=bakert@mirkinc.us"
@@ -78,7 +112,7 @@ function InOut() {
                     />
                   </a>
                   <a
-                    class="contact_anchor"
+                    className="contact_anchor"
                     title="Moble call"
                     href="tel:330-641-2303"
                   >
@@ -89,7 +123,7 @@ function InOut() {
                     />
                   </a>
                   <a
-                    class="contact_anchor"
+                    className="contact_anchor"
                     title="Send email"
                     href="mailto:bakert@mirkinc.us"
                   >
@@ -102,12 +136,12 @@ function InOut() {
                 </td>
                 <td>Out Until 12/5</td>
               </tr>
-              <tr class="tr_reverse">
+              <tr className="tr_reverse">
                 <td>Thut, Mike</td>
-                <td class="td_status">In Office</td>
-                <td class="td_contact">
+                <td className="td_status">In Office</td>
+                <td className="td_contact">
                   <a
-                    class="contact_anchor"
+                    className="contact_anchor"
                     target="tbakerchat"
                     title="Chat via Teams"
                     href="https://teams.microsoft.com/l/chat/0/0?users=bakert@mirkinc.us"
@@ -119,7 +153,7 @@ function InOut() {
                     />
                   </a>
                   <a
-                    class="contact_anchor"
+                    className="contact_anchor"
                     title="Moble call"
                     href="tel:330-641-2303"
                   >
@@ -130,7 +164,7 @@ function InOut() {
                     />
                   </a>
                   <a
-                    class="contact_anchor"
+                    className="contact_anchor"
                     title="Send email"
                     href="mailto:bakert@mirkinc.us"
                   >
@@ -145,7 +179,7 @@ function InOut() {
               </tr>
               <tr>
                 <td>Thut, Shirley</td>
-                <td class="td_status">Vacation</td>
+                <td className="td_status">Vacation</td>
                 <td></td>
                 <td>
                   Out Until 12/5
@@ -157,9 +191,9 @@ function InOut() {
                   </a>
                 </td>
               </tr>
-              <tr class="tr_reverse">
+              <tr className="tr_reverse">
                 <td>Veney, John</td>
-                <td class="td_status">Remote</td>
+                <td className="td_status">Remote</td>
                 <td></td>
                 <td>
                   At home until 9:00 In about 10:00 Cell:
@@ -173,79 +207,77 @@ function InOut() {
                 </td>
               </tr>
 
-              <tr class="location">
-                <td colspan={colspan}>ORRVILLE OHIO</td>
+              <tr className="location">
+                <td colSpan={colspan}>ORRVILLE OHIO</td>
               </tr>
 
               <tr>
                 <td>I, Brian</td>
-                <td class="td_status">In Office</td>
+                <td className="td_status">In Office</td>
                 <td></td>
                 <td></td>
               </tr>
-              <tr class="tr_reverse">
+              <tr className="tr_reverse">
                 <td>Friday, Chris</td>
-                <td class="td_status">Customer Delivery</td>
+                <td className="td_status">Customer Delivery</td>
                 <td></td>
                 <td>Delivering Truck to xyz Company</td>
               </tr>
               <tr>
                 <td>S, Jamie</td>
-                <td class="td_status">In Office</td>
+                <td className="td_status">In Office</td>
                 <td></td>
                 <td></td>
               </tr>
-              <tr class="tr_reverse">
+              <tr className="tr_reverse">
                 <td>Thut, Brock</td>
-                <td class="td_status">In Office</td>
+                <td className="td_status">In Office</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
                 <td>Z, Rick</td>
-                <td class="td_status">In Office</td>
+                <td className="td_status">In Office</td>
                 <td></td>
                 <td></td>
               </tr>
-              <tr class="location">
-                <td colspan={colspan}>BARTOW FLORIDA</td>
+              <tr className="location">
+                <td colSpan={colspan}>BARTOW FLORIDA</td>
               </tr>
               <tr>
                 <td>Cox, Kat</td>
-                <td class="td_status">In Office</td>
+                <td className="td_status">In Office</td>
                 <td></td>
                 <td></td>
               </tr>
-              <tr class="tr_reverse">
+              <tr className="tr_reverse">
                 <td>Darby, Beth</td>
-                <td class="td_status">In Office</td>
+                <td className="td_status">In Office</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
                 <td>Haas, Bill</td>
-                <td class="td_status">In Office</td>
+                <td className="td_status">In Office</td>
                 <td></td>
                 <td></td>
               </tr>
-              <tr class="location">
-                <td colspan={colspan}>WAUKEGAN ILLINOIS</td>
+              <tr className="location">
+                <td colSpan={colspan}>WAUKEGAN ILLINOIS</td>
               </tr>
               <tr>
                 <td>A, Daniel</td>
-                <td class="td_status">In Office</td>
+                <td className="td_status">In Office</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
                 <td>H, James</td>
-                <td class="td_status">In Office</td>
+                <td className="td_status">In Office</td>
                 <td></td>
                 <td></td>
               </tr>
-  
             </tbody>
-          
           </table>
         </div>
       )}

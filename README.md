@@ -72,6 +72,9 @@ To mannually install, follow steps below....
 ######
 1. Change directory to client.  (ie: **c:\reactwork\Radish\client**)
 2. Run command: **npm install**   *yes, it needs run again in the client directory*
+<!-- 4. Run command: **npm i hookrouter --force** -- install hookrouter -->
+<!-- 5. Run command: **npm i @types/hookrouter** -- install hookrounder for typesript -->
+
 7. Run command: **npx browserslist --update-db** -- update supported browsers
 
 maybe run  npm i -S react-scripts

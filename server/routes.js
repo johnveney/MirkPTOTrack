@@ -39,18 +39,14 @@ router.post("/inoutboard", async (req, res) => {
     const authUser = await Auth2(req, false, res); // does NOT require Radmin
     if (authUser.code === 200) {
       const params = req.body;
-      const orgAdmin = inout.validateOrgAdmin(
-        params.org_id,
-        authUser,
-        false
-      );
-      if (orgAdmin) {
-        const myPerks = await inout.getInOutBoard(params);
+     
+      
+        const myInOutBoard = await inout.getInOutBoard(params);
         res.send({
           data: myInOutBoard,
           message: "ok",
         });
-      }
+      
     } else {
       res.send(authFailResponse(authUser));
     }

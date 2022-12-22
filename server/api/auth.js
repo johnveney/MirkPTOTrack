@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const JWTID = process.env.JWTID;
 const NodeCache = require("node-cache");
 
+
 global.ValidHash = (str, salt, hash) => {
   const myHash = crypto
     .pbkdf2Sync(str, salt, 1000, 64, `sha512`)

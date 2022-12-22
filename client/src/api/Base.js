@@ -39,21 +39,32 @@ const checkIfPathNeededValidToken = async () => {
   }
   return tokenValidationNotNeeded;
 };
+
 const APIPost = async ({ model, api }) => {
   let myHeaders = authHeader();
   let tokenValidationNotNeeded = false;
+  
+  // *** TEMP WORK AROUND *** //
+  //TODO: [ERP-78] Fix Temp Validation Work Around in Base.JS
+
+  tokenValidationNotNeeded = true
+  
   myHeaders = {
     ...myHeaders,
     "Content-Type": "application/json",
   };
-  tokenValidationNotNeeded = checkIfPathNeededValidToken();
+  
+  //TODO: [ERP-79] Fix this authentication work around in Base.js
+ // tokenValidationNotNeeded = checkIfPathNeededValidToken();
   if ((myHeaders && myHeaders["x-access-token"]) || tokenValidationNotNeeded) {
     const response = await fetch(`/${api}`, {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(model),
     });
+ 
     const data = await response.json();
+    
     if (
       data &&
       data.code &&
@@ -62,6 +73,7 @@ const APIPost = async ({ model, api }) => {
       data.code !== 202
     ) {
       console.log(`code: ${data.code}: ${data.message}`);
+      
       if (data.code === 400) {
         // unauthorized
         logout();

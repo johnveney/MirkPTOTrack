@@ -16,10 +16,11 @@ async function getInOutBoard(params) {
       Status: 1,
       Location: 1,
       Notes: 1,
-    };
+    }; 
     let sortArray = {
       Location: 1,
-      LastName: 1,
+      LastName:1,
+     
     };
     const myDoc = await collection
       .find(matchArray) 

@@ -25,7 +25,7 @@ function InOut() {
         model: model,
         api: "inoutboard",
       });
-
+console.log(MyInOutBoard);
       if (myInOutBoard.data) {
         setInOutBoard(myInOutBoard.data);
       }
@@ -38,7 +38,6 @@ function InOut() {
         //fadeIn(mainWrapper.current);
       }, 400);
     } catch (err) {
-      console.error(err.message);
       setErrMessage(err.message);
       setTimeout(() => {
         setLoading(false);

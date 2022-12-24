@@ -20,7 +20,7 @@ const client = new MongoClient(url, {
 
 // The database to use on server
 
-const dbName = "MirkData";
+const dbName = "MirkPTO";
 global.db = null;
 async function connectMongo() {
   try {

@@ -53,18 +53,19 @@ const APIPost = async ({ model, api }) => {
     ...myHeaders,
     "Content-Type": "application/json",
   };
-  
+
   //TODO: [ERP-79] Fix this authentication work around in Base.js
  // tokenValidationNotNeeded = checkIfPathNeededValidToken();
   if ((myHeaders && myHeaders["x-access-token"]) || tokenValidationNotNeeded) {
+    
     const response = await fetch(`/${api}`, {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(model),
     });
- 
-    const data = await response.json();
     
+    const data = await response.json();
+    console.log(data);
     if (
       data &&
       data.code &&

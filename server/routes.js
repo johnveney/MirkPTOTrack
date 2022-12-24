@@ -39,7 +39,7 @@ router.post("/inoutboard", async (req, res) => {
     const authUser = await Auth2(req, false, res); // does NOT require Radmin
     if (authUser.code === 200) {
       const params = req.body;
-     
+     console.log(('yes);'))
       
         const myInOutBoard = await inout.getInOutBoard(params);
         res.send({

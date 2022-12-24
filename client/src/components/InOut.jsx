@@ -11,20 +11,21 @@ function InOut() {
   const [errMessage, setErrMessage] = useState();
   const wrapper = useRef(null);
   const outerWrapper = useRef(null);
- // const [errorMsg] = useState(null);
+  // const [errorMsg] = useState(null);
   const colspan = 4;
 
   const getInoutBoard = useCallback(async () => {
     try {
       //mainWrapper.current.classList.remove("fade-in");
       setLoading(true);
-    //  setAddPlaceType(false);
-    //  setPlaceTypeId(null);
+      //  setAddPlaceType(false);
+      //  setPlaceTypeId(null);
       const model = {};
-      const placetypeData = await baseClient.APIPost({
+      const myInOutBoard = await baseClient.APIPost({
         model: model,
         api: "inoutboard",
       });
+
       if (myInOutBoard.data) {
         setInOutBoard(myInOutBoard.data);
       }
@@ -41,7 +42,7 @@ function InOut() {
       setErrMessage(err.message);
       setTimeout(() => {
         setLoading(false);
-      //  fadeIn(mainWrapper.current);
+        //  fadeIn(mainWrapper.current);
       }, 400);
     }
   }, []);
@@ -54,7 +55,6 @@ function InOut() {
       setErrMessage(err.message);
     }
   }, [getInoutBoard]);
-
 
   return (
     <div ref={outerWrapper} className="main-panel p-bottom-4 bg-neutral-1 ">

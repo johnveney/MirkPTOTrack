@@ -1,59 +1,39 @@
 const log = require("./logger.js").insertServerLogs;
 
 async function getInOutBoard(params) {
-  console.log('getInOutBoard called from InOut.js')
+  console.log("getInOutBoard called from InOut.js");
   try {
-    const query = {
-      org_id: params.org_id,
+    const collection = db.collection("INOUT");
+    let matchArray = {
       date_deleted: { $eq: null },
     };
-    const collection = db.collection("perks");
+    let projectArray = {
+      UserId: 1,
+      LastName: 1,
+      FirstName: 1,
+      Cell: 1,
+      Email: 1,
+      Status: 1,
+      Location: 1,
+      Notes: 1,
+    };
+    let sortArray = {
+      Location: 1,
+      LastName: 1,
+    };
     const myDoc = await collection
-      .aggregate([
-        {
-          $match: query,
-        },
-        {
-          $lookup: {
-            from: "images",
-            localField: "image_id",
-            foreignField: "image_id",
-            as: "image",
-          },
-        },
-        {
-          $project: {
-            perk_id: 1,
-            expiration_date: 1,
-            image_id: 1,
-            image_date: "$image.date_modified",
-            image_version: "$image.version",
-            monitary_value: 1,
-            org_id: 1,
-            perk_balance: 1,
-            perk_budget: 1,
-            perk_description: 1,
-            perk_enabled: 1,
-            perk_expires: 1,
-            perk_internal_notes: 1,
-            perk_keywords: 1,
-            perk_name: 1,
-            perk_ongoing: 1,
-            perk_template_id: 1,
-            redeem_date: 1,
-            redeem_deadline: 1,
-            redeem_price: 1,
-          },
-        },
-      ])
-      .sort({ perk_name: 1 })
+      .find(matchArray) 
+      .project(projectArray)
+      .sort(sortArray)
       .toArray();
+
+    console.log(myDoc);
     return myDoc;
   } catch (err) {
     log({
       level: "error",
-      message: "Error occurred while fetching perks.",
-      function: "getPerks",
+      message: "Error occurred while fetching inoutboard.",
+      function: "getInOutBoard",
       params: params,
       error_code: 500,
       error_stack: err.stack,

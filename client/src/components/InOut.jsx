@@ -4,6 +4,7 @@ import baseClient from "../api/Base";
 import teamchat from "../graphics/Teams-24x24.png";
 import newemail from "../graphics/email.png";
 import newphone from "../graphics/phone.png";
+import InOutRow from "./InOutRow";
 
 function InOut() {
   const [inOutBoard, setInOutBoard] = useState();
@@ -25,7 +26,7 @@ function InOut() {
         model: model,
         api: "inoutboard",
       });
-console.log(MyInOutBoard);
+      console.log(MyInOutBoard);
       if (myInOutBoard.data) {
         setInOutBoard(myInOutBoard.data);
       }
@@ -94,6 +95,16 @@ console.log(MyInOutBoard);
               <tr className="location" colSpan={colspan}>
                 <td colSpan={colspan}>CORPORATE</td>
               </tr>
+              <InOutRow
+                id="1"
+                lastName="Baker"
+                firstName="Tina"
+                cell="330-123-1234"
+                email="bakert@gmail.com"
+                status="hi"
+                location="woo"
+                notes="the quick fox"
+              />
               <tr>
                 <td className="td_first">Baker, Tina</td>
                 <td className="td_status">Vacation</td>

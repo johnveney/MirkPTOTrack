@@ -15,10 +15,11 @@ async function getInOutBoard(params) {
       Email: 1,
       Status: 1,
       Location: 1,
+      LocationSort:1,
       Notes: 1,
     }; 
     let sortArray = {
-      Location: 1,
+      LocationSort: 1,
       LastName:1,
      
     };

@@ -14,14 +14,15 @@ function InOutRow({
   status = "",
   location = "",
   notes = "",
+  reverse=""
 }) {
   return (
-    <tr id={userId}>
-      <td>
+    <div className="rTableRow" id={userId}>
+      <div className={`rTableCell col1 ${reverse}`}>
         {lastName},&nbsp;{firstName}
-      </td>
-      <td className="td_status">{status}</td>
-      <td className="td_contact">
+      </div>
+      <div className={`rTableCell col2 td_status ${reverse}`}>{status}</div>
+      <div  className={`rTableCell col3 td_contact ${reverse}`}>
         <a
           className="contact_anchor"
           target={`${userId}chat`}
@@ -52,9 +53,9 @@ function InOutRow({
             alt={`Start New Email to ${firstName}`}
           />
         </a>
-      </td>
-      <td>{notes}</td>
-    </tr>
+      </div>
+      <div className={`rTableCell col4 td_notes ${reverse}`}>{notes}</div>
+    </div>
   );
 }
 export default InOutRow;

@@ -85,25 +85,24 @@ function InOut() {
         <div className="dot-bricks"></div>
       ) : (
         <div ref={wrapper} className="body p-2 fade-in">
-          <table className="table-2">
-            <thead>
-              <tr>
-                <th>Employee</th>
-                <th className="td_status">Status</th>
-                <th>Contact</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="location" colSpan={colspan}>
-                <td colSpan={colspan}>CORPORATE</td>
-              </tr>
+          <div  className="rTable table-2">
+            <div rTableRow>
+                              <div className="rTableHead col1">Employee</div>
+                <div className="rTableHead col2 td_status">Status</div>
+                <div className="rTableHead col3">Contact</div>
+                <div className="rTableHead col4">Notes</div>
+              </div>
+            
+
+              <div className="rTableRow location" colSpan={colspan}>
+                <div className="rTableCell">CORPORATE</div>
+              </div>
             
            
              {inOutBoard && inOutBoard.length >0 ? (
-              <tr >
+              <div >
                {inOutBoard.map((inOutBoard, index) => (
-                
+               
                 <InOutRow
                userId={`${index}`}
                lastName={`${inOutBoard.LastName}`}
@@ -113,13 +112,14 @@ function InOut() {
                 status={`${inOutBoard.Status}`}
                 location={`${inOutBoard.Location}`}
                 notes={`${inOutBoard.Notes}`} 
+                reverse={`tr_reverse`}
               />
 
               
              ))}  
-             </tr>
+             </div>
              ):
-             (<td>{`{errMessage}`}</td>)} 
+             (<div>{`{errMessage}`}</div>)} 
 
          {/*   {inOutBoard.map((inOutBoard, index) => (
                  <InOutRow
@@ -144,7 +144,7 @@ function InOut() {
                 location="woo"
                 notes="the quick fox"
               /> */}
-              <tr>
+             {/*  <tr>
                 <td className="td_first">Baker, Tina</td>
                 <td className="td_status">Vacation</td>
                 <td className="td_contact">
@@ -325,9 +325,9 @@ function InOut() {
                 <td className="td_status">In Office</td>
                 <td></td>
                 <td></td>
-              </tr>
-            </tbody>
-          </table>
+              </tr> */}
+        
+          </div>
         </div>
       )}
     </div>

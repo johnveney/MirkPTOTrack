@@ -26,7 +26,7 @@ function InOut() {
         model: model,
         api: "inoutboard",
       });
-      console.log(MyInOutBoard);
+     
       if (myInOutBoard.data) {
         setInOutBoard(myInOutBoard.data);
       }
@@ -38,6 +38,8 @@ function InOut() {
         setLoading(false);
         //fadeIn(mainWrapper.current);
       }, 400);
+
+     
     } catch (err) {
       setErrMessage(err.message);
       setTimeout(() => {
@@ -76,6 +78,7 @@ function InOut() {
             <span className="fas fa-chevron-left m-right-1"></span>
           </button>{" "}
           Employee Status Board
+
         </h2>
       </header>
       {loading ? (
@@ -95,7 +98,43 @@ function InOut() {
               <tr className="location" colSpan={colspan}>
                 <td colSpan={colspan}>CORPORATE</td>
               </tr>
-              <InOutRow
+            
+           
+             {inOutBoard && inOutBoard.length >0 ? (
+              <tr >
+               {inOutBoard.map((inOutBoard, index) => (
+                
+                <InOutRow
+               userId={`${index}`}
+               lastName={`${inOutBoard.LastName}`}
+                firstName={`${inOutBoard.FirstName}`}
+                cell={`${inOutBoard.Cell}`}
+                email={`${inOutBoard.Email}`}
+                status={`${inOutBoard.Status}`}
+                location={`${inOutBoard.Location}`}
+                notes={`${inOutBoard.Notes}`} 
+              />
+
+              
+             ))}  
+             </tr>
+             ):
+             (<td>{`{errMessage}`}</td>)} 
+
+         {/*   {inOutBoard.map((inOutBoard, index) => (
+                 <InOutRow
+                 id={`${inOutBoard.UserId}`}
+                lastName={`${d.LastName}`}
+                 firstName={`${d.FirstName}`}
+                 cell={`${d.Cell}`}
+                 email={`${d.Email}`}
+                 status={`${d.Status}`}
+                 location={`${d.Location}`}
+                 notes={`${d.Notes}`} 
+               />
+              ))}  */}
+          
+              {/* <InOutRow
                 id="1"
                 lastName="Baker"
                 firstName="Tina"
@@ -104,7 +143,7 @@ function InOut() {
                 status="hi"
                 location="woo"
                 notes="the quick fox"
-              />
+              /> */}
               <tr>
                 <td className="td_first">Baker, Tina</td>
                 <td className="td_status">Vacation</td>

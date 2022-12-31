@@ -14,6 +14,7 @@ function InOut() {
   const outerWrapper = useRef(null);
   // const [errorMsg] = useState(null);
   const colspan = 4;
+  const [iReverse, setIReverse]=0;
 
   const getInoutBoard = useCallback(async () => {
     try {
@@ -100,9 +101,11 @@ function InOut() {
             
            
              {inOutBoard && inOutBoard.length >0 ? (
+              
               <div >
-               {inOutBoard.map((inOutBoard, index) => (
-               
+               {inOutBoard.map((inOutBoard, index) => 
+               (
+              
                 <InOutRow
                userId={`${index}`}
                lastName={`${inOutBoard.LastName}`}
@@ -116,7 +119,8 @@ function InOut() {
               />
 
               
-             ))}  
+             )
+             )}  
              </div>
              ):
              (<div>{`{errMessage}`}</div>)} 

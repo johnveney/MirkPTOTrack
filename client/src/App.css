@@ -1883,25 +1883,25 @@ span.back-chevron {
 }
 
 /* TABLE ALTRNATIVE */
-.rTable {
+.rtable {
   display: block;
   width: 100%;
 }
-.rTableHeading, .rTableBody, .rTableFoot, .rTableRow{
+.rtableheading, .rtablebody, .rtablefoot, .rtablerow{
   clear: both;
 }
-.rTableHead, .rTableFoot{
+.rtablehead, .rtablefoot{
   background-color: #DDD;
   font-weight: bold;
 }
-.rTableCell, .rTableHead {
+.rtablecell, .rtablehead {
   border: 1px solid #999999;
   float: left;
   height: 45px;
   overflow: hidden;
   padding: 3px 1.8%;
 }
-.rTable:after {
+.rtable:after {
   visibility: hidden;
   display: block;
   font-size: 0;

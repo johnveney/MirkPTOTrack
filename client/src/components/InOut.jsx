@@ -14,7 +14,7 @@ function InOut() {
   const outerWrapper = useRef(null);
   // const [errorMsg] = useState(null);
   const colspan = 4;
-  const [iReverse, setIReverse]=0;
+ // const [iReverse, setIReverse]=0;
 
   const getInoutBoard = useCallback(async () => {
     try {
@@ -86,17 +86,17 @@ function InOut() {
         <div className="dot-bricks"></div>
       ) : (
         <div ref={wrapper} className="body p-2 fade-in">
-          <div  className="rTable table-2">
-            <div rTableRow>
-                              <div className="rTableHead col1">Employee</div>
-                <div className="rTableHead col2 td_status">Status</div>
-                <div className="rTableHead col3">Contact</div>
-                <div className="rTableHead col4">Notes</div>
+          <div  className="rtable table-2">
+            <div rtablerow>
+                              <div className="rtablehead col1">Employee</div>
+                <div className="rtablehead col2 td_status">Status</div>
+                <div className="rtablehead col3">Contact</div>
+                <div className="rtablehead col4">Notes</div>
               </div>
             
 
-              <div className="rTableRow location" colSpan={colspan}>
-                <div className="rTableCell">CORPORATE</div>
+              <div className="rtablerow location" colSpan={colspan}>
+                <div className="rtablecell">CORPORATE</div>
               </div>
             
            
@@ -115,7 +115,7 @@ function InOut() {
                 status={`${inOutBoard.Status}`}
                 location={`${inOutBoard.Location}`}
                 notes={`${inOutBoard.Notes}`} 
-                reverse={`tr_reverse`}
+                reverse={`${inOutBoard.Reverse}`}
               />
 
               

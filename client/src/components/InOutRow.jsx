@@ -16,13 +16,14 @@ function InOutRow({
   notes = "",
   reverse=""
 }) {
+  
   return (
-    <div className="rTableRow" id={userId}>
-      <div className={`rTableCell col1 ${reverse}`}>
-        {lastName},&nbsp;{firstName}
+    <div className="rtablerow" id={userId}>
+      <div className={`rtablecell col1 ${reverse ? "tr_reverse":"" }`}>
+        {lastName},&nbsp;{firstName}{reverse}
       </div>
-      <div className={`rTableCell col2 td_status ${reverse}`}>{status}</div>
-      <div  className={`rTableCell col3 td_contact ${reverse}`}>
+      <div className={`rtablecell col2 td_status ${reverse}`}>{status}</div>
+      <div  className={`rtablecell col3 td_contact ${reverse}`}>
         <a
           className="contact_anchor"
           target={`${userId}chat`}
@@ -54,7 +55,7 @@ function InOutRow({
           />
         </a>
       </div>
-      <div className={`rTableCell col4 td_notes ${reverse}`}>{notes}</div>
+      <div className={`rtablecell col4 td_notes ${reverse}`}>{notes}</div>
     </div>
   );
 }

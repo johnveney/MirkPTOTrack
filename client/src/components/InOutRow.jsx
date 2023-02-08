@@ -18,8 +18,8 @@ function InOutRow({
   return (
     <div className="rtablerow" id={userId}>
       {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
-      <div className={`rtablecell col1 `}>
-        {lastName},&nbsp;{firstName}--{userId}
+      <div className={`rtablecell col1 ${reverse ? "" : "tr_reverse"}`}>
+        {lastName},&nbsp;{firstName}
         
       </div>
       <div className={`rtablecell col2 td_status  `}>{status}</div>

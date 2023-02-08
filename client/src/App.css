@@ -1910,6 +1910,17 @@ span.back-chevron {
   height: 0;
 }
 
+.locName{
+  width:100%;
+  height:30px;
+  color:white;
+  background-color:#006338;
+border-bottom: none;
+border-right:none;
+border-top:none;
+padding:.3%;
+}
+
 .col1{
   width:20%
 }

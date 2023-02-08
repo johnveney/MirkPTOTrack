@@ -12,18 +12,18 @@ function InOutRow({
   cell = "",
   email = "",
   status = "",
-  location = "",
   notes = "",
-  reverse=""
+  reverse = false,
 }) {
-  
   return (
     <div className="rtablerow" id={userId}>
-      <div className={`rtablecell col1 ${reverse ? "tr_reverse":"" }`}>
-        {lastName},&nbsp;{firstName}{reverse}
+      {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
+      <div className={`rtablecell col1 `}>
+        {lastName},&nbsp;{firstName}--{userId}
+        
       </div>
-      <div className={`rtablecell col2 td_status ${reverse}`}>{status}</div>
-      <div  className={`rtablecell col3 td_contact ${reverse}`}>
+      <div className={`rtablecell col2 td_status  `}>{status}</div>
+      <div className={`rtablecell col3 td_contact `}>
         <a
           className="contact_anchor"
           target={`${userId}chat`}
@@ -55,7 +55,7 @@ function InOutRow({
           />
         </a>
       </div>
-      <div className={`rtablecell col4 td_notes ${reverse}`}>{notes}</div>
+      <div className={`rtablecell col4 td_notes `}>{notes}</div>
     </div>
   );
 }

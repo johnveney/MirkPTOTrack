@@ -1,11 +1,12 @@
 const log = require("./logger.js").insertServerLogs;
 
 async function getInOutBoard(params) {
-  console.log("getInOutBoard called from InOut.js");
+
   try {
     const collection = db.collection("INOUT");
     let matchArray = {
       date_deleted: { $eq: null },
+      Location: "CORPORATE",
     };
     let projectArray = {
       UserId: 1,
@@ -23,14 +24,55 @@ async function getInOutBoard(params) {
       LocationSort: 1,
       LastName: 1,
     };
-    const myDoc = await collection
+    const corp = await collection
       .find(matchArray)
       .project(projectArray)
       .sort(sortArray)
       .toArray();
 
-    console.log(myDoc);
-    return myDoc;
+      //RESET FOR ORRVILLE LOCATION
+      matchArray = {
+        date_deleted: { $eq: null },
+        Location: "ORRVILLE OHIO",
+      };
+
+      const orrville = await collection
+      .find(matchArray)
+      .project(projectArray)
+      .sort(sortArray)
+      .toArray();
+    
+ //RESET FOR BARTOW LOCATION
+ matchArray = {
+  date_deleted: { $eq: null },
+  Location: "BARTOW FLORIDA",
+};
+
+const florida = await collection
+.find(matchArray)
+.project(projectArray)
+.sort(sortArray)
+.toArray();
+
+ //RESET FOR WAUKEGAN LOCATION
+ matchArray = {
+  date_deleted: { $eq: null },
+  Location: "WAUKEGAN ILLINOIS",
+};
+
+const illinois = await collection
+.find(matchArray)
+.project(projectArray)
+.sort(sortArray)
+.toArray();
+
+    return {
+      data: corp,
+      aCorp:corp,
+      aOrrville:orrville,
+      aFlorida:florida,
+      aIllinois:illinois,
+    }
   } catch (err) {
     log({
       level: "error",

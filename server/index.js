@@ -2,7 +2,7 @@
 const mongo = require("./mongodb.js");
 const routes = require("./routes");
 //global.crypto = require("crypto");
-//global.auth = require("./api/auth");
+global.auth = require("./api/auth");
 const log = require("./api/logger").insertServerLogs;
 //const scheduler = require('./scheduler/cronService');
 

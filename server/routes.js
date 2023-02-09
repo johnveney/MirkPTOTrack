@@ -1,22 +1,22 @@
+const inout = require("./api/inout.js");
 //const placeTypes = require("./api/placeTypes.js");
-/* const notifications = require("./api/notifications.js");
-const perks = require("./api/perks.js");
-const comments = require("./api/comments.js");
-const users = require("./api/users.js");
-const people = require("./api/people.js");
-const organizations = require("./api/organizations.js");
-const imageAdmin = require("./api/imageAdmin.js");
-const badges = require("./api/badges.js");
-const causes = require("./api/causes.js");
-const groups = require("./api/groups.js");
-const public = require("./api/public.js");
-const googleContacts = require("./api/googleContacts.js");
-const events = require("./api/events.js");
-const validator = require("./api/validator.js");
-const google = require("./api/google.js");
+ //const notifications = require("./api/notifications.js");F
+//const comments = require("./api/comments.js");
+//const users = require("./api/users.js");
+//const people = require("./api/people.js");
+//const organizations = require("./api/organizations.js");
+//const imageAdmin = require("./api/imageAdmin.js");
+//const badges = require("./api/badges.js");
+//const causes = require("./api/causes.js");
+//const groups = require("./api/groups.js");
+//const public = require("./api/public.js");
+//const googleContacts = require("./api/googleContacts.js");
+//const events = require("./api/events.js");
+//const validator = require("./api/validator.js");
+//const google = require("./api/google.js");
 const logger = require("./api/logger.js");
 const log = require("./api/logger").insertServerLogs;
-*/
+
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
@@ -32,6 +32,114 @@ const authFailResponse = (authUser) => {
     code: authUser.code,
   };
 };
+
+/*IN OUT BOARD */
+router.post("/inoutboard", async (req, res) => {
+  try {
+    const authUser = await Auth2(req, false, res); // does NOT require Radmin
+    if (authUser.code === 200) {
+      const params = req.body;
+          
+        const myInOutBoard = await inout.getInOutBoard(params);
+        
+        res.send({
+          data: myInOutBoard.data,
+          corp: myInOutBoard.aCorp,
+          orrville:myInOutBoard.aOrrville,
+          florida:myInOutBoard.aFlorida,
+          illinois:myInOutBoard.aIllinois,
+          message: "ok",
+        });
+
+    } else {
+      res.send(authFailResponse(authUser));
+    }
+  } catch (err) {
+    log({
+      level: "error",
+      message: "Error occurred while getting inoutboard.",
+      function: "inoutboard",
+      error_code: 500,
+      error_stack: err.stack,
+    });
+    res.send({
+      message: "Error getting inoutboard.",
+      code: 500,
+    });
+  }
+});
+
+router.post("/inoutperson", async (req, res) => {
+  try {
+    const authUser = await Auth2(req, false, res); // does NOT require Radmin
+    if (authUser.code === 200) {
+      const params = req.body;
+      const orgAdmin = organizations.validateOrgAdmin(
+        params.org_id,
+        authUser,
+        false
+      );
+      if (orgAdmin) {
+        const myPerk = await inout.getInOutPerson(params);
+        res.send({
+          data: myInOutPerson,
+          message: myInOutPerson.message || "ok",
+          code: myInOutPerson.code || 200,
+        });
+      }
+    } else {
+      res.send(authFailResponse(authUser));
+    }
+  } catch (err) {
+    log({
+      level: "error",
+      message: "Error occurred while getting inoutperson.",
+      function: "inoutperson",
+      error_code: 500,
+      error_stack: err.stack,
+    });
+    res.send({
+      message: "Error getting inoutperson.",
+      code: 500,
+    });
+  }
+});
+
+router.post("/upsertinoutperson", async (req, res) => {
+  try {
+    const authUser = await Auth2(req, false, res); // does NOT require Radmin
+    if (authUser.code === 200) {
+      const params = req.body;
+      const orgAdmin = organizations.validateOrgAdmin(
+        params.org_id,
+        authUser,
+        false
+      );
+      if (orgAdmin) {
+        const perk = await inout.upsertInOutPerson(params, authUser);
+        res.send({
+          data: inoutperson,
+          message: inoutperson.message || "ok",
+          code: inoutpersoninoutperson.code || 200,
+        });
+      }
+    } else {
+      res.send(authFailResponse(authUser));
+    }
+  } catch (err) {
+    log({
+      level: "error",
+      message: "Error occurred while updating perk.",
+      function: "upsertinoutperson",
+      error_code: 500,
+      error_stack: err.stack,
+    });
+    res.send({
+      message: "Error updating inoutperson.",
+      code: 500,
+    });
+  }
+});
 
 /* PUBLIC */
 router.post("/contactus", async (req, res) => {

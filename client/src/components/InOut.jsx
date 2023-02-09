@@ -1,26 +1,69 @@
-import React, { useEffect, useRef, useState } from "react";
-import { slideScreen } from "../Tools";
-import teamchat from "../graphics/Teams-24x24.png";
-import newemail from "../graphics/email.png";
-import newphone from "../graphics/phone.png";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+//import { slideScreen } from "../Tools";
+import baseClient from "../api/Base";
+import InOutRow from "./InOutRow";
 
 function InOut() {
-  const [loading, setLoading] = useState(false);
+  const [inOutBoard, setInOutBoard] = useState();
+  const [corp, setCorp] = useState();
+  const [orrville, setOrrville] = useState();
+  const [florida, setFlorida] = useState();
+  const [illinois, setIllinois] = useState();
+  const [loading, setLoading] = useState(true);
+  const [errMessage, setErrMessage] = useState();
   const wrapper = useRef(null);
   const outerWrapper = useRef(null);
+  // const [errorMsg] = useState(null);
   const colspan = 4;
+  // const [iReverse, setIReverse]=0;
+
+  const getInoutBoard = useCallback(async () => {
+    try {
+      //mainWrapper.current.classList.remove("fade-in");
+      setLoading(true);
+      //  setAddPlaceType(false);
+      //  setPlaceTypeId(null);
+      const model = {
+        //aLocation : "CORPORATE",
+        //aLocation: "ORRVILLE OHIO",
+      };
+      const myInOutBoard = await baseClient.APIPost({
+        model: model,
+        api: "inoutboard",
+      });
+
+      if (myInOutBoard.data) {
+        setInOutBoard(myInOutBoard.data);
+        setCorp(myInOutBoard.corp);
+        setOrrville(myInOutBoard.orrville);
+        setFlorida(myInOutBoard.florida);
+        setIllinois(myInOutBoard.illinois);
+      }
+      if (myInOutBoard.message && myInOutBoard.message !== "ok") {
+        console.error(myInOutBoard.message);
+        setErrMessage(myInOutBoard.message);
+      }
+      setTimeout(() => {
+        setLoading(false);
+        //fadeIn(mainWrapper.current);
+      }, 400);
+    } catch (err) {
+      setErrMessage(err.message);
+      setTimeout(() => {
+        setLoading(false);
+        //  fadeIn(mainWrapper.current);
+      }, 400);
+    }
+  }, []);
 
   useEffect(() => {
-    const getData = async () => {
-      //ADD DATA CALL STUFF HERE
-      setLoading(true);
-      //GO GET DATA...
-
-      //HANDLE SLIDEIN
-      slideScreen(outerWrapper.current, wrapper, setLoading);
-    };
-    getData();
-  }, []);
+    try {
+      getInoutBoard();
+    } catch (err) {
+      console.error(err.message);
+      setErrMessage(err.message);
+    }
+  }, [getInoutBoard]);
 
   return (
     <div ref={outerWrapper} className="main-panel p-bottom-4 bg-neutral-1 ">
@@ -48,205 +91,110 @@ function InOut() {
         <div className="dot-bricks"></div>
       ) : (
         <div ref={wrapper} className="body p-2 fade-in">
-          <table class="table-2">
-            <thead>
-              <tr>
-                <th>Employee</th>
-                <th class="td_status">Status</th>
-                <th>Contact</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="location" colspan={colspan}>
-                <td colspan={colspan}>CORPORATE</td>
-              </tr>
-              <tr>
-                <td class="td_first">Baker, Tina</td>
-                <td class="td_status">Vacation</td>
-                <td class="td_contact">
-                  <a
-                    class="contact_anchor"
-                    target="tbakerchat"
-                    title="Chat via Teams"
-                    href="https://teams.microsoft.com/l/chat/0/0?users=bakert@mirkinc.us"
-                  >
-                    <img
-                      src={teamchat}
-                      className="radish-icon-24"
-                      alt="start team chat"
-                    />
-                  </a>
-                  <a
-                    class="contact_anchor"
-                    title="Moble call"
-                    href="tel:330-641-2303"
-                  >
-                    <img
-                      src={newphone}
-                      className="radish-icon-24"
-                      alt="start mobile call"
-                    />
-                  </a>
-                  <a
-                    class="contact_anchor"
-                    title="Send email"
-                    href="mailto:bakert@mirkinc.us"
-                  >
-                    <img
-                      src={newemail}
-                      className="radish-icon-24"
-                      alt="start new email"
-                    />
-                  </a>
-                </td>
-                <td>Out Until 12/5</td>
-              </tr>
-              <tr class="tr_reverse">
-                <td>Thut, Mike</td>
-                <td class="td_status">In Office</td>
-                <td class="td_contact">
-                  <a
-                    class="contact_anchor"
-                    target="tbakerchat"
-                    title="Chat via Teams"
-                    href="https://teams.microsoft.com/l/chat/0/0?users=bakert@mirkinc.us"
-                  >
-                    <img
-                      src={teamchat}
-                      className="radish-icon-24"
-                      alt="start team chat"
-                    />
-                  </a>
-                  <a
-                    class="contact_anchor"
-                    title="Moble call"
-                    href="tel:330-641-2303"
-                  >
-                    <img
-                      src={newphone}
-                      className="radish-icon-24"
-                      alt="start mobile call"
-                    />
-                  </a>
-                  <a
-                    class="contact_anchor"
-                    title="Send email"
-                    href="mailto:bakert@mirkinc.us"
-                  >
-                    <img
-                      src={newemail}
-                      className="radish-icon-24"
-                      alt="start new email"
-                    />
-                  </a>
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Thut, Shirley</td>
-                <td class="td_status">Vacation</td>
-                <td></td>
-                <td>
-                  Out Until 12/5
-                  <a
-                    target="tbakerchat"
-                    href="https://teams.microsoft.com/l/chat/0/0?users=bakert@mirkinc.us"
-                  >
-                    Chat
-                  </a>
-                </td>
-              </tr>
-              <tr class="tr_reverse">
-                <td>Veney, John</td>
-                <td class="td_status">Remote</td>
-                <td></td>
-                <td>
-                  At home until 9:00 In about 10:00 Cell:
-                  <a href="tel:330-641-2303">330-641-2303</a>
-                  <a
-                    target="jveneychat"
-                    href="https://teams.microsoft.com/l/chat/0/0?users=veneyj@mirkinc.us"
-                  >
-                    <img src="https://mirkinc.sharepoint.com/:i:/s/MirkIntranet/EcxnP490AxVOumHFGLLy-oEBZRVVUuQLSQCCj2fHXuBmGg?e=MzwnnR" />
-                  </a>
-                </td>
-              </tr>
+          <div className="rtable table-2">
+            <div rtablerow>
+              <div className="rtablehead col1">Employee</div>
+              <div className="rtablehead col2 td_status">Status</div>
+              <div className="rtablehead col3">Contact</div>
+              <div className="rtablehead col4">Notes</div>
+            </div>
 
-              <tr class="location">
-                <td colspan={colspan}>ORRVILLE OHIO</td>
-              </tr>
+            <div className="rtablerow location">
+              <div className="rtablecell locName">CORPORATE</div>
+            </div>
 
-              <tr>
-                <td>I, Brian</td>
-                <td class="td_status">In Office</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr class="tr_reverse">
-                <td>Friday, Chris</td>
-                <td class="td_status">Customer Delivery</td>
-                <td></td>
-                <td>Delivering Truck to xyz Company</td>
-              </tr>
-              <tr>
-                <td>S, Jamie</td>
-                <td class="td_status">In Office</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr class="tr_reverse">
-                <td>Thut, Brock</td>
-                <td class="td_status">In Office</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Z, Rick</td>
-                <td class="td_status">In Office</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr class="location">
-                <td colspan={colspan}>BARTOW FLORIDA</td>
-              </tr>
-              <tr>
-                <td>Cox, Kat</td>
-                <td class="td_status">In Office</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr class="tr_reverse">
-                <td>Darby, Beth</td>
-                <td class="td_status">In Office</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Haas, Bill</td>
-                <td class="td_status">In Office</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr class="location">
-                <td colspan={colspan}>WAUKEGAN ILLINOIS</td>
-              </tr>
-              <tr>
-                <td>A, Daniel</td>
-                <td class="td_status">In Office</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>H, James</td>
-                <td class="td_status">In Office</td>
-                <td></td>
-                <td></td>
-              </tr>
-  
-            </tbody>
-          
-          </table>
+            {corp && corp.length > 0 ? (
+              <div>
+                {corp.map((corp, index) => (
+                  <InOutRow
+                    key={`a${index}`}
+                    userId={`a${index}`}
+                    lastName={`${corp.LastName}`}
+                    firstName={`${corp.FirstName}`}
+                    cell={`${corp.Cell}`}
+                    email={`${corp.Email}`}
+                    status={`${corp.Status}`}
+                    notes={`${corp.Notes}`}
+                    reverse={`${corp.Reverse}`}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div>{`{errMessage}`}</div>
+            )}
+
+            <div className="rtablerow location">
+              <div className="rtablecell locName">ORRVILLE OHIO</div>
+            </div>
+
+            {orrville && orrville.length > 0 ? (
+              <div>
+                {orrville.map((orrville, index) => (
+                  <InOutRow
+                    key={`b${index}`}
+                    userId={`b${index}`}
+                    lastName={`${orrville.LastName}`}
+                    firstName={`${orrville.FirstName}`}
+                    cell={`${orrville.Cell}`}
+                    email={`${orrville.Email}`}
+                    status={`${orrville.Status}`}
+                    notes={`${orrville.Notes}`}
+                    reverse={`${orrville.Reverse}`}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div>{`{errMessage}`}</div>
+            )}
+
+            <div className="rtablerow location">
+              <div className="rtablecell locName">BARTOW FLORIDA</div>
+            </div>
+
+            {florida && florida.length > 0 ? (
+              <div>
+                {florida.map((florida, index) => (
+                  <InOutRow
+                    key={`c${index}`}
+                    userId={`c${index}`}
+                    lastName={`${florida.LastName}`}
+                    firstName={`${florida.FirstName}`}
+                    cell={`${florida.Cell}`}
+                    email={`${florida.Email}`}
+                    status={`${florida.Status}`}
+                    notes={`${florida.Notes}`}
+                    reverse={`${florida.Reverse}`}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div>{`{errMessage}`}</div>
+            )}
+
+            <div className="rtablerow location">
+              <div className="rtablecell locName">WAUKEGAN ILLINOIS</div>
+            </div>
+
+            {illinois && illinois.length > 0 ? (
+              <div>
+                {illinois.map((illinois, index) => (
+                  <InOutRow
+                    key={`d${index}`}
+                    userId={`d${index}`}
+                    lastName={`${illinois.LastName}`}
+                    firstName={`${illinois.FirstName}`}
+                    cell={`${illinois.Cell}`}
+                    email={`${illinois.Email}`}
+                    status={`${illinois.Status}`}
+                    notes={`${illinois.Notes}`}
+                    reverse={`${illinois.Reverse}`}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div>{`{errMessage}`}</div>
+            )}
+          </div>
         </div>
       )}
     </div>

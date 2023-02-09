@@ -389,6 +389,10 @@ select.required,
   padding: 1rem;
 }
 
+.p-1-pct {
+  padding: 1%;
+}
+
 .p-2 {
   padding: 2rem;
 }

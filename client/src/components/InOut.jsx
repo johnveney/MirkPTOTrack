@@ -76,6 +76,7 @@ function InOut() {
             onClick={() => {
               setTimeout(function () {
                 outerWrapper.current.classList.add("slide-right-off");
+                
               }, 0);
               setTimeout(function () {
                 window.history.back(0);
@@ -84,19 +85,32 @@ function InOut() {
           >
             <span className="fas fa-chevron-left m-right-1"></span>
           </button>{" "}
-          Employee Status Board
+          Employee&nbsp;Status&nbsp;Board
         </h2>
+        <button
+            type="button"
+            title="Refresh this page"
+            className="refresh-link"
+            onClick={() => {
+              setTimeout(function () {
+                window.location.reload();
+              }, 0);
+              
+            }}
+          >
+            <span className="fa fa-refresh m-left-1"></span>
+          </button>
       </header>
       {loading ? (
         <div className="dot-bricks"></div>
       ) : (
-        <div ref={wrapper} className="body p-2 fade-in">
+        <div ref={wrapper} className="body p-1-pct fade-in">
           <div className="rtable table-2">
             <div rtablerow>
-              <div className="rtablehead col1">Employee</div>
-              <div className="rtablehead col2 td_status">Status</div>
-              <div className="rtablehead col3">Contact</div>
-              <div className="rtablehead col4">Notes</div>
+              <div className="rtablehead col1 padding-top-1-pct">Employee</div>
+              <div className="rtablehead col2 td_status padding-top-1-pct">Status</div>
+              <div className="rtablehead col3 padding-top-1-pct">Contact</div>
+              <div className="rtablehead col4 padding-top-1-pct">Notes</div>
             </div>
 
             <div className="rtablerow location">

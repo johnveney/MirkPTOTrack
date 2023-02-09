@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "engines": {
-    "node": "16.13.2"
+    "node": "18.12.1"
   },
   "description": "Mirk PTO Tracking Application",
   "main": "index.js",
@@ -19,7 +19,7 @@
   "author": "John Veney",
   "license": "ISC",
   "dependencies": {
-    "moment-timezone": "^0.5.39",
+    "moment-timezone": "^0.5.40",
     "react-scripts": "^5.0.1"
   },
   "browserslist": {
@@ -35,9 +35,9 @@
     ]
   },
   "devDependencies": {
-    "@types/react-dom": "^17.0.12",
-    "prettier": "2.5.1",
-    "react-dom": "^17.0.2"
+    "@types/react-dom": "^18.0.10",
+    "prettier": "2.8.4",
+    "react-dom": "^18.2.0"
   },
   "homepage": "/"
 }

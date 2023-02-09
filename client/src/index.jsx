@@ -54,14 +54,15 @@ import "./Overrides.css";
 }
 <ComponentWrapper component={<PageNotFound />} />; */
 
+// ***************  THIS IS THE SECTION THAT THE APP LOADS IN ************************
 function MainArea() {
   return (
     <div>
-      <div>Hello Dave ! </div>
       <div id="data">
         <Suspense fallback={<span>error</span>}>
           {/* <PageNotFound /> */}
            <InOut /> 
+           {/* <EULA/> */}
         </Suspense>
       </div>
     </div>

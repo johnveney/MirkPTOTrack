@@ -3,6 +3,9 @@
   "version": "1.1.1",
   "description": "MIRK! PTO Tracker",
   "main": "index.js",
+  "engines": {
+    "node": "18.12.1"
+  },
   "scripts": {
     "start MirkPTOTrack Server": "node server/index.js",
     "start MIRK FrontEnd": "cd client && npm start",

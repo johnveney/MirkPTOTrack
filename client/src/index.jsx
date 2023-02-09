@@ -8,7 +8,7 @@ import {
   useCallback,
 } from "react";
 //import ReactDOM from "react-dom";
-import ReactDOM  from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
 //const outerWrapper = useRef(null);
 //const PageNotFound = lazy(() => import("./components/PageNotFound"));
 const EULA = lazy(() => import("./components/EULA"));

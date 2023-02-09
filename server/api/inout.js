@@ -1,6 +1,8 @@
 const log = require("./logger.js").insertServerLogs;
 
 async function getInOutBoard(params) {
+  const date = new Date();
+  log({ level: "info", message: `getInOutBoard at ${date}` });
 
   try {
     const collection = db.collection("INOUT");

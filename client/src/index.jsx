@@ -300,11 +300,13 @@ function MainArea1() {
   );
 }
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById("root")).render(<MainArea />)
+
+//ReactDOM.render(
   /*  <AppContextProvider>
      <MainArea />
    </AppContextProvider>, */
   /*   <EULA />, */
-  <MainArea />,
-  document.getElementById("root")
-);
+// <MainArea />,
+//  document.getElementById("root")
+//);

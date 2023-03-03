@@ -20,7 +20,14 @@ function InOutRow({
       {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
       <div className={`rtablecell col1`}>
         {lastName},&nbsp;{firstName}
-        
+        <a
+          className="contact_anchor p-25"
+          title="SEdit"
+          href={`mailto:${email}`}
+        >
+          <i className="fa fa-edit neutral-5" />
+       
+        </a>
       </div>
       <div className={`rtablecell col2 td_status  `}>{status}</div>
       <div className={`rtablecell col3 td_contact `}>

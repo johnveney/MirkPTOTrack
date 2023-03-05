@@ -1,5 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
-import baseClient from "../api/Base";
+import {  useState } from "react";
+//import baseClient from "../api/Base";
+import PopUp from "./PopUp";
+import EditStatus from "./EditStatus";
 
 import teamchat from "../graphics/Teams-24x24.png";
 import newemail from "../graphics/email.png";
@@ -15,21 +17,52 @@ function InOutRow({
   notes = "",
   reverse = false,
 }) {
-  return (
+  const { showEditStatus, setShowEditStatus } = useState(true);
+
+const   setState = () => {
+    alert("hi");
+    setShowEditStatus(true);
+  }; 
+  
+
+  const results = (
     <div className="rtablerow" id={userId}>
+      <div>
+        {showEditStatus  ? (
+          <PopUp
+            title="Add Group"
+            //stateFunction={setShowAddGroup}
+            component={
+              <EditStatus
+                /*  orgId={orgID} */
+                fnClose={() => {
+                  setShowEula(null);
+                }}
+              />
+            }
+          />
+        ) : null}
+      </div>
       {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
       <div className={`rtablecell col1`}>
+        Show Edit Status: {showEditStatus}
         {lastName},&nbsp;{firstName}
-        <a
-          className="contact_anchor p-25"
-          title="SEdit"
-          href={`mailto:${email}`}
-        >
-          <i className="fa fa-edit neutral-5" />
-       
-        </a>
       </div>
-      <div className={`rtablecell col2 td_status  `}>{status}</div>
+      <div className={`rtablecell col2 td_status  `}>
+        {status}
+        <div className="p-05">
+          <button
+            type="button"
+            className="link-alike"
+            onClick={() => {
+              setState();
+              //setShowEditStatus(true);
+            }}
+          >
+            <i className="fa fa-edit neutral-5" />
+          </button>
+        </div>
+      </div>
       <div className={`rtablecell col3 td_contact `}>
         <a
           className="contact_anchor"
@@ -64,6 +97,10 @@ function InOutRow({
       </div>
       <div className={`rtablecell col4 td_notes `}>{notes}</div>
     </div>
+  
   );
+
+  return(results)
+  
 }
 export default InOutRow;

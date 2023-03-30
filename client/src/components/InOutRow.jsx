@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 //import baseClient from "../api/Base";
 import PopUp from "./PopUp";
 import EditStatus from "./EditStatus";
@@ -17,18 +17,18 @@ function InOutRow({
   notes = "",
   reverse = false,
 }) {
-  const { showEditStatus, setShowEditStatus } = useState(true);
+  const [ showEditStatus, setShowEditStatus ] = useState();
 
-const   setState = () => {
+
+  const setState =async () => {
     alert("hi");
-    setShowEditStatus(true);
-  }; 
-  
+    setShowEditStatus("hi");
+  };
 
   const results = (
     <div className="rtablerow" id={userId}>
       <div>
-        {showEditStatus  ? (
+        {showEditStatus ? (
           <PopUp
             title="Add Group"
             //stateFunction={setShowAddGroup}
@@ -36,7 +36,7 @@ const   setState = () => {
               <EditStatus
                 /*  orgId={orgID} */
                 fnClose={() => {
-                  setShowEula(null);
+                  setShowEditStatus(null);
                 }}
               />
             }
@@ -45,7 +45,7 @@ const   setState = () => {
       </div>
       {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
       <div className={`rtablecell col1`}>
-        Show Edit Status: {showEditStatus}
+        Show Edit Status: {setShowEditStatus}
         {lastName},&nbsp;{firstName}
       </div>
       <div className={`rtablecell col2 td_status  `}>
@@ -97,10 +97,8 @@ const   setState = () => {
       </div>
       <div className={`rtablecell col4 td_notes `}>{notes}</div>
     </div>
-  
   );
 
-  return(results)
-  
+  return results;
 }
 export default InOutRow;

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { slideScreen } from "../Tools";
 
-function EditStatus() {
+function EditStatus({ userID = "" }) {
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState([]);
   const wrapper = useRef(null);
   const outerWrapper = useRef(null);
 

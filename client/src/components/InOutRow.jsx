@@ -21,7 +21,7 @@ function InOutRow({
 
 
   const setState =async () => {
-    alert("hi");
+    
     setShowEditStatus("hi");
   };
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //import baseClient from "../api/Base";
 import PopUp from "./PopUp";
 import EditStatus from "./EditStatus";
@@ -15,13 +15,29 @@ function InOutRow({
   email = "",
   status = "",
   notes = "",
-  reverse = false,
+  reverse = 0,
 }) {
-  const [ showEditStatus, setShowEditStatus ] = useState();
+  const [showEditStatus, setShowEditStatus] = useState();
+  const [inOffice, setInOffice] = useState();
 
+  /* useEffect(() => {
+    try {
+      alert("In Loop");
+    } catch (err) {
+      alert("In Error");
+    }
+  }); */
 
-  const setState =async () => {
-    
+/*   const setStatus = async () => {
+    if (inOffice != "") {
+      //alert(`${status}`)
+      setInOffice = status;
+    }
+  };
+
+  setStatus(); */
+
+  const setState = async () => {
     setShowEditStatus("hi");
   };
 
@@ -44,13 +60,12 @@ function InOutRow({
         ) : null}
       </div>
       {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
-      <div className={`rtablecell col1`}>
-        Show Edit Status: {setShowEditStatus}
+      <div className={`rtablecell col1 `}>
         {lastName},&nbsp;{firstName}
       </div>
       <div className={`rtablecell col2 td_status  `}>
         {status}
-        <div className="p-05">
+        <div className="float-right">
           <button
             type="button"
             className="link-alike"

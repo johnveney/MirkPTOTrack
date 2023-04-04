@@ -764,6 +764,10 @@ select.required,
   bottom: 0;
 }
 
+.float-right {
+  float:right;
+}
+
 .bottom-float {
   position: fixed;
   bottom: 0;

@@ -106,7 +106,7 @@ function InOut() {
       ) : (
         <div ref={wrapper} className="body p-1-pct fade-in">
           <div className="rtable table-2">
-            <div rtablerow>
+            <div className="tablerow">
               <div className="rtablehead col1 padding-top-1-pct">Employee</div>
               <div className="rtablehead col2 td_status padding-top-1-pct">Status</div>
               <div className="rtablehead col3 padding-top-1-pct">Contact</div>

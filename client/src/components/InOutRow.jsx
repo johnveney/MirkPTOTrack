@@ -15,7 +15,7 @@ function InOutRow({
   email = "",
   status = "",
   notes = "",
-  reverse = 0,
+  reverse = "",
 }) {
   const [showEditStatus, setShowEditStatus] = useState();
   const [inOffice, setInOffice] = useState();
@@ -60,9 +60,9 @@ function InOutRow({
         ) : null}
       </div>
       {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
-      <div className={`rtablecell col1 `}>
-        {lastName},&nbsp;{firstName}
-      </div>
+      <div className={`rtablecell col1 ${reverse}`}>
+        {lastName},&nbsp;{firstName} 
+              </div>
       <div className={`rtablecell col2 td_status  `}>
         {status}
         <div className="float-right">

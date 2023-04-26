@@ -1891,6 +1891,12 @@ span.refresh-link {
   font-size:smaller;
 }
 
+.remote {
+  background-color: #d1f3fc;
+}
+.pto {
+  background-color: #f5dd8d;
+}
 
 .contact_anchor {
   padding-left: 2px;

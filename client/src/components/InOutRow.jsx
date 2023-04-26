@@ -60,10 +60,10 @@ function InOutRow({
         ) : null}
       </div>
       {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
-      <div className={`rtablecell col1 ${reverse}`}>
+      <div className={`rtablecell col1 ${status.toLocaleLowerCase()}`}>
         {lastName},&nbsp;{firstName} 
               </div>
-      <div className={`rtablecell col2 td_status  `}>
+      <div className={`rtablecell col2 td_status ${status.toLocaleLowerCase()}`}>
         {status}
         <div className="float-right">
           <button
@@ -78,7 +78,7 @@ function InOutRow({
           </button>
         </div>
       </div>
-      <div className={`rtablecell col3 td_contact `}>
+      <div className={`rtablecell col3 td_contact  ${status.toLocaleLowerCase()}`}>
         <a
           className="contact_anchor"
           target={`${userId}chat`}
@@ -110,7 +110,7 @@ function InOutRow({
           />
         </a>
       </div>
-      <div className={`rtablecell col4 td_notes `}>{notes}</div>
+      <div className={`rtablecell col4 td_notes  ${status.toLocaleLowerCase()}`}>{notes}</div>
     </div>
   );
 

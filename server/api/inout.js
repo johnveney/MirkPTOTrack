@@ -32,49 +32,49 @@ async function getInOutBoard(params) {
       .sort(sortArray)
       .toArray();
 
-      //RESET FOR ORRVILLE LOCATION
-      matchArray = {
-        date_deleted: { $eq: null },
-        Location: "ORRVILLE OHIO",
-      };
+    //RESET FOR ORRVILLE LOCATION
+    matchArray = {
+      date_deleted: { $eq: null },
+      Location: "ORRVILLE OHIO",
+    };
 
-      const orrville = await collection
+    const orrville = await collection
       .find(matchArray)
       .project(projectArray)
       .sort(sortArray)
       .toArray();
-    
- //RESET FOR BARTOW LOCATION
- matchArray = {
-  date_deleted: { $eq: null },
-  Location: "BARTOW FLORIDA",
-};
 
-const florida = await collection
-.find(matchArray)
-.project(projectArray)
-.sort(sortArray)
-.toArray();
+    //RESET FOR BARTOW LOCATION
+    matchArray = {
+      date_deleted: { $eq: null },
+      Location: "BARTOW FLORIDA",
+    };
 
- //RESET FOR WAUKEGAN LOCATION
- matchArray = {
-  date_deleted: { $eq: null },
-  Location: "WAUKEGAN ILLINOIS",
-};
+    const florida = await collection
+      .find(matchArray)
+      .project(projectArray)
+      .sort(sortArray)
+      .toArray();
 
-const illinois = await collection
-.find(matchArray)
-.project(projectArray)
-.sort(sortArray)
-.toArray();
+    //RESET FOR WAUKEGAN LOCATION
+    matchArray = {
+      date_deleted: { $eq: null },
+      Location: "WAUKEGAN ILLINOIS",
+    };
+
+    const illinois = await collection
+      .find(matchArray)
+      .project(projectArray)
+      .sort(sortArray)
+      .toArray();
 
     return {
       data: corp,
-      aCorp:corp,
-      aOrrville:orrville,
-      aFlorida:florida,
-      aIllinois:illinois,
-    }
+      aCorp: corp,
+      aOrrville: orrville,
+      aFlorida: florida,
+      aIllinois: illinois,
+    };
   } catch (err) {
     log({
       level: "error",
@@ -85,6 +85,30 @@ const illinois = await collection
       error_stack: err.stack,
     });
     return null;
+  }
+}
+
+async function getPersonStatus(id) {
+  //retreives selected information for a user
+  const date = new Date();
+  log({ level: "info", message: `getPersonStatus at ${date}` });
+/* console.log(id) */
+  try {
+    const collection = db.collection("INOUT");
+    const myDoc = await collection.findOne({ UserId: id });
+    /* console.log(myDoc.JSON.stingify); */
+    return {
+      data: myDoc,
+      message: "ok",
+    };
+  } catch (err) {
+    log({
+      level: "error",
+      message: `Error while fetching status details, id: ${id}.`,
+      function: "getUser",
+      error_code: 500,
+      error_stack: err.stack,
+    });
   }
 }
 
@@ -220,5 +244,6 @@ async function upsertInOutPerson(params, authUser) {
 module.exports = {
   getInOutBoard,
   getInOutPerson,
+  getPersonStatus,
   upsertInOutPerson,
 };

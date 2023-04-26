@@ -105,6 +105,38 @@ router.post("/inoutperson", async (req, res) => {
   }
 });
 
+router.post("/personstatus", async (req, res) => {
+  try {
+    const authUser = await Auth2(req, false, res); // does NOT require Radmin
+    if (authUser.code === 200) {
+      const params = req.body;
+          
+        const myPersonStatus = await inout.getPersonStatus(params);
+      console.log(myPersonStatus.myDoc)  
+        res.send({
+          data: myPersonStatus.myDoc,
+          message: "ok",
+        });
+
+    } else {
+      res.send(authFailResponse(authUser));
+    }
+  } catch (err) {
+    log({
+      level: "error",
+      message: "Error occurred while getting personstatus.",
+      function: "personstatus",
+      error_code: 500,
+      error_stack: err.stack,
+    });
+    res.send({
+      message: "Error getting personstatus.",
+      code: 500,
+    });
+  }
+});
+
+
 router.post("/upsertinoutperson", async (req, res) => {
   try {
     const authUser = await Auth2(req, false, res); // does NOT require Radmin

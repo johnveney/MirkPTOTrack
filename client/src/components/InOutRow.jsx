@@ -28,7 +28,7 @@ function InOutRow({
     }
   }); */
 
-/*   const setStatus = async () => {
+  /*   const setStatus = async () => {
     if (inOffice != "") {
       //alert(`${status}`)
       setInOffice = status;
@@ -46,11 +46,13 @@ function InOutRow({
       <div>
         {showEditStatus ? (
           <PopUp
-            title="Add Group"
+            title="Edit Status"
             //stateFunction={setShowAddGroup}
             component={
               <EditStatus
-                /*  orgId={orgID} */
+                userID={userId}
+                aStatus={status}
+                aNotes={notes}
                 fnClose={() => {
                   setShowEditStatus(null);
                 }}
@@ -61,9 +63,11 @@ function InOutRow({
       </div>
       {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
       <div className={`rtablecell col1 ${status.toLocaleLowerCase()}`}>
-        {lastName},&nbsp;{firstName} 
-              </div>
-      <div className={`rtablecell col2 td_status ${status.toLocaleLowerCase()}`}>
+        {lastName},&nbsp;{firstName}
+      </div>
+      <div
+        className={`rtablecell col2 td_status ${status.toLocaleLowerCase()}`}
+      >
         {status}
         <div className="float-right">
           <button
@@ -78,7 +82,9 @@ function InOutRow({
           </button>
         </div>
       </div>
-      <div className={`rtablecell col3 td_contact  ${status.toLocaleLowerCase()}`}>
+      <div
+        className={`rtablecell col3 td_contact  ${status.toLocaleLowerCase()}`}
+      >
         <a
           className="contact_anchor"
           target={`${userId}chat`}
@@ -110,7 +116,11 @@ function InOutRow({
           />
         </a>
       </div>
-      <div className={`rtablecell col4 td_notes  ${status.toLocaleLowerCase()}`}>{notes}</div>
+      <div
+        className={`rtablecell col4 td_notes  ${status.toLocaleLowerCase()}`}
+      >
+        {notes}
+      </div>
     </div>
   );
 

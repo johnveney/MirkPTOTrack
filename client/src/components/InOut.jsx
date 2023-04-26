@@ -122,7 +122,7 @@ function InOut() {
                 {corp.map((corp, index) => (
                   <InOutRow
                     key={`a${index}`}
-                    userId={`a${index}`}
+                    userId={`${corp.UserId}`}
                     lastName={`${corp.LastName}`}
                     firstName={`${corp.FirstName}`}
                     cell={`${corp.Cell}`}
@@ -146,7 +146,7 @@ function InOut() {
                 {orrville.map((orrville, index) => (
                   <InOutRow
                     key={`b${index}`}
-                    userId={`b${index}`}
+                    userId={`${orrville.UserId}`}
                     lastName={`${orrville.LastName}`}
                     firstName={`${orrville.FirstName}`}
                     cell={`${orrville.Cell}`}
@@ -170,7 +170,7 @@ function InOut() {
                 {florida.map((florida, index) => (
                   <InOutRow
                     key={`c${index}`}
-                    userId={`c${index}`}
+                    userId={`${florida.UserId}`}
                     lastName={`${florida.LastName}`}
                     firstName={`${florida.FirstName}`}
                     cell={`${florida.Cell}`}
@@ -194,7 +194,7 @@ function InOut() {
                 {illinois.map((illinois, index) => (
                   <InOutRow
                     key={`d${index}`}
-                    userId={`d${index}`}
+                    userId={`${illinois.UserId}`}
                     lastName={`${illinois.LastName}`}
                     firstName={`${illinois.FirstName}`}
                     cell={`${illinois.Cell}`}

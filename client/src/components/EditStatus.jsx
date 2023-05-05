@@ -76,13 +76,13 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
                   setDirty(true);
                 }}
               />
-              {/* <div>
+              {/*  <div>
                   <Dropdown
                     options={typeTagsList}
                     onSelect={reloadOrgs}
                     selected={selectedType}
                   />
-                </div> */}
+                </div>  */}
             </label>
 
             <label htmlFor="notes" className="m-top-05">

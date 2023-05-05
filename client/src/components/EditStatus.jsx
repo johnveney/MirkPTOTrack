@@ -20,7 +20,7 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
       setLoading(true);
       //GO GET DATA...
       const model = {
-        id:uid
+        UserId:uid
       };
       const myStatus = await baseClient.APIPost({
         model: model,

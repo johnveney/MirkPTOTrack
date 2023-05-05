@@ -1,6 +1,6 @@
 const inout = require("./api/inout.js");
 //const placeTypes = require("./api/placeTypes.js");
- //const notifications = require("./api/notifications.js");F
+//const notifications = require("./api/notifications.js");F
 //const comments = require("./api/comments.js");
 //const users = require("./api/users.js");
 //const people = require("./api/people.js");
@@ -39,18 +39,17 @@ router.post("/inoutboard", async (req, res) => {
     const authUser = await Auth2(req, false, res); // does NOT require Radmin
     if (authUser.code === 200) {
       const params = req.body;
-          
-        const myInOutBoard = await inout.getInOutBoard(params);
-        
-        res.send({
-          data: myInOutBoard.data,
-          corp: myInOutBoard.aCorp,
-          orrville:myInOutBoard.aOrrville,
-          florida:myInOutBoard.aFlorida,
-          illinois:myInOutBoard.aIllinois,
-          message: "ok",
-        });
 
+      const myInOutBoard = await inout.getInOutBoard(params);
+
+      res.send({
+        data: myInOutBoard.data,
+        corp: myInOutBoard.aCorp,
+        orrville: myInOutBoard.aOrrville,
+        florida: myInOutBoard.aFlorida,
+        illinois: myInOutBoard.aIllinois,
+        message: "ok",
+      });
     } else {
       res.send(authFailResponse(authUser));
     }
@@ -110,14 +109,14 @@ router.post("/personstatus", async (req, res) => {
     const authUser = await Auth2(req, false, res); // does NOT require Radmin
     if (authUser.code === 200) {
       const params = req.body;
-          
-        const myPersonStatus = await inout.getPersonStatus(params);
-      console.log(myPersonStatus.myDoc)  
-        res.send({
-          data: myPersonStatus.myDoc,
-          message: "ok",
-        });
+      console.log(params);
 
+      const myPersonStatus = await inout.getPersonStatus(params);
+      console.log(myPersonStatus.data);
+      res.send({
+        data: myPersonStatus.myDoc,
+        message: "ok",
+      });
     } else {
       res.send(authFailResponse(authUser));
     }
@@ -135,7 +134,6 @@ router.post("/personstatus", async (req, res) => {
     });
   }
 });
-
 
 router.post("/upsertinoutperson", async (req, res) => {
   try {
@@ -4162,7 +4160,6 @@ router.post("/updateeventrating", async (req, res) => {
     const params = req.body;
     const response = await events.updateEventRating(params);
     res.send(response);
-
   } catch (err) {
     console.log(err.stack);
     res.send({
@@ -4204,10 +4201,7 @@ router.post("/checkuserisfriendornot", async (req, res) => {
     const authUser = await Auth2(req, false, res); // does not require Radmin
     if (authUser.code === 200) {
       const params = req.body;
-      const response = await people.checkUserIsFriendOrNot(
-        params,
-        authUser
-      );
+      const response = await people.checkUserIsFriendOrNot(params, authUser);
       res.send(response);
     } else {
       res.send(authFailResponse(authUser));

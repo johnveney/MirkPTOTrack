@@ -88,15 +88,15 @@ async function getInOutBoard(params) {
   }
 }
 
-async function getPersonStatus(id) {
+async function getPersonStatus(params) {
   //retreives selected information for a user
   const date = new Date();
   log({ level: "info", message: `getPersonStatus at ${date}` });
-/* console.log(id) */
+ console.log(params.UserId)
   try {
     const collection = db.collection("INOUT");
-    const myDoc = await collection.findOne({ UserId: id });
-    /* console.log(myDoc.JSON.stingify); */
+    const myDoc = await collection.findOne({ UserId: params.UserId });
+     console.log(JSON.stringify(myDoc)); 
     return {
       data: myDoc,
       message: "ok",
@@ -104,7 +104,7 @@ async function getPersonStatus(id) {
   } catch (err) {
     log({
       level: "error",
-      message: `Error while fetching status details, id: ${id}.`,
+      message: `Error while fetching status details, UserId: ${params.UserId}.`,
       function: "getUser",
       error_code: 500,
       error_stack: err.stack,

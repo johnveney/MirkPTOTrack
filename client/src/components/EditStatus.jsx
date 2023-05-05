@@ -6,6 +6,7 @@ import { slideScreen } from "../Tools";
 function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState([]);
+  const [dirty, setDirty] = useState();
   const wrapper = useRef(null);
   const outerWrapper = useRef(null);
 
@@ -20,21 +21,34 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
       setLoading(true);
       //GO GET DATA...
       const model = {
-        UserId:uid
+        UserId: uid,
       };
       const myStatus = await baseClient.APIPost({
         model: model,
         api: "personstatus",
       });
-      if(myStatus.data) {
-        console.log(myStatus.data);
-        alert("Have data");
+      if (myStatus.data) {
+        const data = myStatus.data;
+        setUser(data);
       }
       //HANDLE SLIDEIN
       slideScreen(outerWrapper.current, wrapper, setLoading);
     };
     getData();
   }, []);
+
+  const handleExit = async () => {
+    
+    
+      setTimeout(function () {
+        //outerWrapper.current.classList.add("slide-right-off");
+      }, 0);
+      setTimeout(function () {
+        //  navigate(`/group/${groupId}`);
+        window.location.reload();
+      }, 10);
+    
+  };
 
   return (
     <div ref={outerWrapper} className="main-panel p-bottom-4 bg-neutral-1 ">
@@ -54,11 +68,12 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
                 name="status"
                 type="text"
                 placeholder="Status"
-                /* defaultValue={contactInfo?.last_name} */
+                defaultValue={user?.Status}
                 autoFocus
                 required
                 onChange={() => {
-                  setCase(status, "upper");
+                  //setCase(status, "upper");
+                  setDirty(true);
                 }}
               />
               {/* <div>
@@ -79,15 +94,40 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
                 type="text"
                 rows="2"
                 cols="75"
-                placeholder="Notes"
-                /* defaultValue={contactInfo?.last_name} */
-                autoFocus
+                placeholder="Enter Any Necessary Notes"
+                defaultValue={user?.Notes}
+               /*  autoFocus */
                 required
                 onChange={() => {
-                  setCase(notes, "upper");
+                  //setCase(notes, "upper");
+                  setDirty(true);
                 }}
               />
             </label>
+            <div className="m-top-1">
+              <button
+                type="button"
+                className="button button-teal"
+                onClick={() => {
+                  goStep(2);
+                }}
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                className="button button-red"
+                onClick={() => {
+                 // if (!dirty) {
+                  handleExit();
+                 // } else {
+                 //   alert("Dirty")
+                 // }
+                }}
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         </div>
       )}

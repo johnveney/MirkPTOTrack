@@ -773,7 +773,8 @@ button {
 
 button:hover {
   cursor: pointer;
-  /* background-color: var(--ui-state-success); */
+   /* background-color: var(--ui-state-success);  */
+   border-radius: 0;
 }
 
 /* button:disabled,

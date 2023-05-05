@@ -109,12 +109,11 @@ router.post("/personstatus", async (req, res) => {
     const authUser = await Auth2(req, false, res); // does NOT require Radmin
     if (authUser.code === 200) {
       const params = req.body;
-      console.log(params);
 
       const myPersonStatus = await inout.getPersonStatus(params);
-      console.log(myPersonStatus.data);
+      /* console.log(myPersonStatus.data); */
       res.send({
-        data: myPersonStatus.myDoc,
+        data: myPersonStatus.data,
         message: "ok",
       });
     } else {

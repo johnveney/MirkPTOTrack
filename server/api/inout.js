@@ -92,11 +92,11 @@ async function getPersonStatus(params) {
   //retreives selected information for a user
   const date = new Date();
   log({ level: "info", message: `getPersonStatus at ${date}` });
- console.log(params.UserId)
+  /* console.log(params.UserId) */
   try {
     const collection = db.collection("INOUT");
     const myDoc = await collection.findOne({ UserId: params.UserId });
-     console.log(JSON.stringify(myDoc)); 
+    /* console.log(JSON.stringify(myDoc));  */
     return {
       data: myDoc,
       message: "ok",

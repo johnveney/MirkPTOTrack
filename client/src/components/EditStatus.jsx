@@ -58,7 +58,7 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
       }
       model = {
         uid: uid,
-        notes_value: notes,
+       // notes_value: notes.current,
         status_value: status,
       };
       const saveStatusUpdate = await baseClient.APIPost({

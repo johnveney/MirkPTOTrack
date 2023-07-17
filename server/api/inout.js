@@ -179,60 +179,29 @@ async function getInOutPerson(params) {
 async function upsertInOutPerson(params, authUser) {
   try {
     const date = new Date();
-    const perkID = params.perk_id || crypto.randomBytes(16).toString("hex");
-    const query = { perk_id: perkID };
-    const collection = db.collection("perks");
+       const query = { UserId: params.uid };
+    const collection = db.collection("INOUT");
     let fieldArray;
-    if (params.date_deleted) {
-      // DELETING PERK
+    
       fieldArray = {
-        date_deleted: date,
-        deleted_by: authUser.data.person_id,
+        Notes: params.notes_value,
+        Status: params.status_value,
+       // LastUpdateBy: uid,
+        LastUpdate: date,
       };
-    } else {
-      fieldArray = {
-        image_id: params.image_id,
-        perk_name: params.perk_name,
-        perk_description: params.perk_description,
-        perk_internal_notes: params.perk_internal_notes,
-        perk_keywords: params.perk_keywords,
-        perk_template_id: params.perk_template_id,
-        perk_budget: params.perk_budget,
-        perk_balance: params.perk_balance,
-        perk_expires: params.perk_expires,
-        expiration_date: params.expiration_date, // only if one-time perk like a data-specific concert
-        perk_ongoing: params.perk_ongoing, //true if repeats monthly, false if one-time perk like a date-specific concert.
-        redeem_price: params.redeem_price,
-        redeem_deadline: params.redeem_deadline,
-        redeem_date: params.redeem_date, // only if one-time perk like a data-specific concert
-        monitary_value: params.monitary_value,
-        perk_enabled: params.perk_enabled,
-        modified_by: authUser.data.person_id,
-        date_modified: date,
-        org_id: params.org_id,
-      };
-    }
-    if (!params.perk_id) {
-      fieldArray = {
-        ...fieldArray,
-        perk_id: perkID,
-        created_by: authUser.data.person_id,
-        date_created: date,
-      };
-    }
     const setArray = { $set: fieldArray };
     const options = {
       upsert: true,
       // runValidators: true,
     };
-    await collection.updateOne(query, setArray, options);
-    const myDoc = await collection.findOne({ perk_id: perkID });
+    await collection.updateOne(query, setArray, options);  
+    const myDoc = await collection.findOne({ UserId: params.uid });
     return myDoc;
   } catch (error) {
     log({
       level: "error",
-      message: "Error occurred while updating perk.",
-      function: "upsertPerk",
+      message: "Error occurred while updating user status.",
+      function: "upsertInOutPerson",
       params: params,
       error_code: 500,
       error_stack: error.stack,

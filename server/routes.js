@@ -23,7 +23,7 @@ const fs = require("fs");
 const path = require("path");
 
 router.get("/api", (req, res) => {
-  res.json({ message: "Hello from Radish!" });
+  res.json({ message: "Hello from MIRK!" });
 });
 
 const authFailResponse = (authUser) => {
@@ -136,29 +136,23 @@ router.post("/personstatus", async (req, res) => {
 
 router.post("/upsertinoutperson", async (req, res) => {
   try {
+    /* console.log("Save status called"); */
     const authUser = await Auth2(req, false, res); // does NOT require Radmin
     if (authUser.code === 200) {
       const params = req.body;
-      const orgAdmin = organizations.validateOrgAdmin(
-        params.org_id,
-        authUser,
-        false
-      );
-      if (orgAdmin) {
-        const perk = await inout.upsertInOutPerson(params, authUser);
-        res.send({
-          data: inoutperson,
-          message: inoutperson.message || "ok",
-          code: inoutpersoninoutperson.code || 200,
-        });
-      }
+      const perk = await inout.upsertInOutPerson(params, authUser);
+      res.send({
+        /* data: inoutperson, */
+        message:  "ok",
+        /* code: inoutpersoninoutperson.code || 200, */
+      });
     } else {
       res.send(authFailResponse(authUser));
     }
   } catch (err) {
     log({
       level: "error",
-      message: "Error occurred while updating perk.",
+      message: "Error occurred while updating inout person.",
       function: "upsertinoutperson",
       error_code: 500,
       error_stack: err.stack,

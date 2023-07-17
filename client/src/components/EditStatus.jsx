@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import baseClient from "../api/Base";
-import { slideScreen } from "../Tools";
+import { slideScreen, getFormModel } from "../Tools";
 //import Dropdown from "Components/FormControls/Dropdown";
 
 function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
@@ -38,16 +38,43 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
   }, []);
 
   const handleExit = async () => {
-    
-    
-      setTimeout(function () {
-        //outerWrapper.current.classList.add("slide-right-off");
-      }, 0);
-      setTimeout(function () {
-        //  navigate(`/group/${groupId}`);
-        window.location.reload();
-      }, 10);
-    
+    setTimeout(function () {
+      //outerWrapper.current.classList.add("slide-right-off");
+    }, 0);
+    setTimeout(function () {
+      //  navigate(`/group/${groupId}`);
+      window.location.reload();
+    }, 10);
+  };
+
+  const saveStatus = async () => {
+    try {
+      // alert ('save clicked');
+      let model;
+      model = await getFormModel(form1.current, model, setLoading);
+      if (!model) {
+        setLoading(false);
+        return;
+      }
+      model = {
+        uid: uid,
+        notes_value: notes,
+        status_value: status,
+      };
+      const saveStatusUpdate = await baseClient.APIPost({
+        model: model,
+        api: "upsertinoutperson",
+      });
+      alert(saveStatusUpdate);
+
+      //setTimeout(function () {
+      //  navigate(`/group/${groupId}`);
+      //  window.location.reload();
+      //}, 10);
+    } catch (err) {
+      setLoading(false);
+      console.log(err.message);
+    }
   };
 
   return (
@@ -96,7 +123,7 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
                 cols="75"
                 placeholder="Enter Any Necessary Notes"
                 defaultValue={user?.Notes}
-               /*  autoFocus */
+                /*  autoFocus */
                 required
                 onChange={() => {
                   //setCase(notes, "upper");
@@ -109,7 +136,7 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
                 type="button"
                 className="button button-teal"
                 onClick={() => {
-                  goStep(2);
+                  saveStatus();
                 }}
               >
                 Save
@@ -118,11 +145,11 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
                 type="button"
                 className="button button-red"
                 onClick={() => {
-                 // if (!dirty) {
+                  // if (!dirty) {
                   handleExit();
-                 // } else {
-                 //   alert("Dirty")
-                 // }
+                  // } else {
+                  //   alert("Dirty")
+                  // }
                 }}
               >
                 Cancel

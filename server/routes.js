@@ -136,7 +136,7 @@ router.post("/personstatus", async (req, res) => {
 
 router.post("/upsertinoutperson", async (req, res) => {
   try {
-    /* console.log("Save status called"); */
+    /* console.log("Save status called");  */
     const authUser = await Auth2(req, false, res); // does NOT require Radmin
     if (authUser.code === 200) {
       const params = req.body;

@@ -181,8 +181,8 @@ async function upsertInOutPerson(params, authUser) {
     const date = new Date();
        const query = { UserId: params.uid };
     const collection = db.collection("INOUT");
-    let fieldArray;
     
+    let fieldArray;
       fieldArray = {
         Notes: params.notes_value,
         Status: params.status_value,

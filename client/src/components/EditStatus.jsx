@@ -49,7 +49,7 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
 
   const saveStatus = async () => {
     try {
-      // alert ('save clicked');
+    //  alert ('status value'+ status.current.value);
       let model;
       model = await getFormModel(form1.current, model, setLoading);
       if (!model) {
@@ -58,19 +58,18 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
       }
       model = {
         uid: uid,
-       // notes_value: notes.current,
-        status_value: status,
+        notes_value: notes.current.value,
+        status_value: status.current.value,
       };
       const saveStatusUpdate = await baseClient.APIPost({
         model: model,
         api: "upsertinoutperson",
       });
-      alert(saveStatusUpdate);
-
-      //setTimeout(function () {
-      //  navigate(`/group/${groupId}`);
-      //  window.location.reload();
-      //}, 10);
+      
+      setTimeout(function () {
+        //  navigate(`/group/${groupId}`);
+        window.location.reload();
+      }, 10);
     } catch (err) {
       setLoading(false);
       console.log(err.message);

@@ -773,7 +773,8 @@ button {
 
 button:hover {
   cursor: pointer;
-  /* background-color: var(--ui-state-success); */
+   /* background-color: var(--ui-state-success);  */
+   border-radius: 0;
 }
 
 /* button:disabled,
@@ -1891,6 +1892,13 @@ span.refresh-link {
   font-size:smaller;
 }
 
+/* FOLLOWING SECTIONS SET BACKGROUND ON ROW BASED ON STATUS */
+.remote {
+  background-color: #d1f3fc;
+}
+.pto {
+  background-color: #f5dd8d;
+}
 
 .contact_anchor {
   padding-left: 2px;
@@ -2306,7 +2314,7 @@ button.button-pill-1 {
 
 .pop-up .body {
   overflow: auto;
-  margin-top: 4rem;
+  margin-top: 2rem;
   max-height: calc(100vh - 4rem);
 }
 

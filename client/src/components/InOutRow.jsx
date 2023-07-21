@@ -1,5 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
-import baseClient from "../api/Base";
+import { useEffect, useState } from "react";
+//import baseClient from "../api/Base";
+import PopUp from "./PopUp";
+import EditStatus from "./EditStatus";
 
 import teamchat from "../graphics/Teams-24x24.png";
 import newemail from "../graphics/email.png";
@@ -13,17 +15,76 @@ function InOutRow({
   email = "",
   status = "",
   notes = "",
-  reverse = false,
+  reverse = "",
 }) {
-  return (
+  const [showEditStatus, setShowEditStatus] = useState();
+  const [inOffice, setInOffice] = useState();
+
+  /* useEffect(() => {
+    try {
+      alert("In Loop");
+    } catch (err) {
+      alert("In Error");
+    }
+  }); */
+
+  /*   const setStatus = async () => {
+    if (inOffice != "") {
+      //alert(`${status}`)
+      setInOffice = status;
+    }
+  };
+
+  setStatus(); */
+
+  const setState = async () => {
+    setShowEditStatus("hi");
+  };
+
+  const results = (
     <div className="rtablerow" id={userId}>
-      {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
-      <div className={`rtablecell col1`}>
-        {lastName},&nbsp;{firstName}
-        
+      <div>
+        {showEditStatus ? (
+          <PopUp
+            title="Edit Status"
+            //stateFunction={setShowAddGroup}
+            component={
+              <EditStatus
+                userID={userId}
+                aStatus={status}
+                aNotes={notes}
+                fnClose={() => {
+                  setShowEditStatus(null);
+                }}
+              />
+            }
+          />
+        ) : null}
       </div>
-      <div className={`rtablecell col2 td_status  `}>{status}</div>
-      <div className={`rtablecell col3 td_contact `}>
+      {/* <div className={`rtablecell col1 ${reverse ? "tr_reverse" : ""}`}> */}
+      <div className={`rtablecell col1 ${status.toLocaleLowerCase()}`}>
+        {lastName},&nbsp;{firstName}
+      </div>
+      <div
+        className={`rtablecell col2 td_status ${status.toLocaleLowerCase()}`}
+      >
+        {status}
+        <div className="float-right">
+          <button
+            type="button"
+            className="link-alike"
+            onClick={() => {
+              setState();
+              //setShowEditStatus(true);
+            }}
+          >
+            <i className="fa fa-edit neutral-5" />
+          </button>
+        </div>
+      </div>
+      <div
+        className={`rtablecell col3 td_contact  ${status.toLocaleLowerCase()}`}
+      >
         <a
           className="contact_anchor"
           target={`${userId}chat`}
@@ -55,8 +116,14 @@ function InOutRow({
           />
         </a>
       </div>
-      <div className={`rtablecell col4 td_notes `}>{notes}</div>
+      <div
+        className={`rtablecell col4 td_notes  ${status.toLocaleLowerCase()}`}
+      >
+        {notes}
+      </div>
     </div>
   );
+
+  return results;
 }
 export default InOutRow;

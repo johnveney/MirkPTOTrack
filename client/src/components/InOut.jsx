@@ -13,19 +13,12 @@ function InOut() {
   const [errMessage, setErrMessage] = useState();
   const wrapper = useRef(null);
   const outerWrapper = useRef(null);
-  // const [errorMsg] = useState(null);
   const colspan = 4;
-  // const [iReverse, setIReverse]=0;
 
   const getInoutBoard = useCallback(async () => {
     try {
-      //mainWrapper.current.classList.remove("fade-in");
       setLoading(true);
-      //  setAddPlaceType(false);
-      //  setPlaceTypeId(null);
       const model = {
-        //aLocation : "CORPORATE",
-        //aLocation: "ORRVILLE OHIO",
       };
       const myInOutBoard = await baseClient.APIPost({
         model: model,
@@ -45,13 +38,11 @@ function InOut() {
       }
       setTimeout(() => {
         setLoading(false);
-        //fadeIn(mainWrapper.current);
       }, 400);
     } catch (err) {
       setErrMessage(err.message);
       setTimeout(() => {
         setLoading(false);
-        //  fadeIn(mainWrapper.current);
       }, 400);
     }
   }, []);
@@ -106,7 +97,7 @@ function InOut() {
       ) : (
         <div ref={wrapper} className="body p-1-pct fade-in">
           <div className="rtable table-2">
-            <div rtablerow>
+            <div className="tablerow">
               <div className="rtablehead col1 padding-top-1-pct">Employee</div>
               <div className="rtablehead col2 td_status padding-top-1-pct">Status</div>
               <div className="rtablehead col3 padding-top-1-pct">Contact</div>
@@ -122,7 +113,7 @@ function InOut() {
                 {corp.map((corp, index) => (
                   <InOutRow
                     key={`a${index}`}
-                    userId={`a${index}`}
+                    userId={`${corp.UserId}`}
                     lastName={`${corp.LastName}`}
                     firstName={`${corp.FirstName}`}
                     cell={`${corp.Cell}`}
@@ -146,7 +137,7 @@ function InOut() {
                 {orrville.map((orrville, index) => (
                   <InOutRow
                     key={`b${index}`}
-                    userId={`b${index}`}
+                    userId={`${orrville.UserId}`}
                     lastName={`${orrville.LastName}`}
                     firstName={`${orrville.FirstName}`}
                     cell={`${orrville.Cell}`}
@@ -170,7 +161,7 @@ function InOut() {
                 {florida.map((florida, index) => (
                   <InOutRow
                     key={`c${index}`}
-                    userId={`c${index}`}
+                    userId={`${florida.UserId}`}
                     lastName={`${florida.LastName}`}
                     firstName={`${florida.FirstName}`}
                     cell={`${florida.Cell}`}
@@ -194,7 +185,7 @@ function InOut() {
                 {illinois.map((illinois, index) => (
                   <InOutRow
                     key={`d${index}`}
-                    userId={`d${index}`}
+                    userId={`${illinois.UserId}`}
                     lastName={`${illinois.LastName}`}
                     firstName={`${illinois.FirstName}`}
                     cell={`${illinois.Cell}`}

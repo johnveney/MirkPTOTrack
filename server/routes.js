@@ -1,6 +1,6 @@
 const inout = require("./api/inout.js");
 //const placeTypes = require("./api/placeTypes.js");
- //const notifications = require("./api/notifications.js");F
+//const notifications = require("./api/notifications.js");F
 //const comments = require("./api/comments.js");
 //const users = require("./api/users.js");
 //const people = require("./api/people.js");
@@ -23,7 +23,7 @@ const fs = require("fs");
 const path = require("path");
 
 router.get("/api", (req, res) => {
-  res.json({ message: "Hello from Radish!" });
+  res.json({ message: "Hello from MIRK!" });
 });
 
 const authFailResponse = (authUser) => {
@@ -39,18 +39,17 @@ router.post("/inoutboard", async (req, res) => {
     const authUser = await Auth2(req, false, res); // does NOT require Radmin
     if (authUser.code === 200) {
       const params = req.body;
-          
-        const myInOutBoard = await inout.getInOutBoard(params);
-        
-        res.send({
-          data: myInOutBoard.data,
-          corp: myInOutBoard.aCorp,
-          orrville:myInOutBoard.aOrrville,
-          florida:myInOutBoard.aFlorida,
-          illinois:myInOutBoard.aIllinois,
-          message: "ok",
-        });
 
+      const myInOutBoard = await inout.getInOutBoard(params);
+
+      res.send({
+        data: myInOutBoard.data,
+        corp: myInOutBoard.aCorp,
+        orrville: myInOutBoard.aOrrville,
+        florida: myInOutBoard.aFlorida,
+        illinois: myInOutBoard.aIllinois,
+        message: "ok",
+      });
     } else {
       res.send(authFailResponse(authUser));
     }
@@ -105,31 +104,55 @@ router.post("/inoutperson", async (req, res) => {
   }
 });
 
-router.post("/upsertinoutperson", async (req, res) => {
+router.post("/personstatus", async (req, res) => {
   try {
     const authUser = await Auth2(req, false, res); // does NOT require Radmin
     if (authUser.code === 200) {
       const params = req.body;
-      const orgAdmin = organizations.validateOrgAdmin(
-        params.org_id,
-        authUser,
-        false
-      );
-      if (orgAdmin) {
-        const perk = await inout.upsertInOutPerson(params, authUser);
-        res.send({
-          data: inoutperson,
-          message: inoutperson.message || "ok",
-          code: inoutpersoninoutperson.code || 200,
-        });
-      }
+
+      const myPersonStatus = await inout.getPersonStatus(params);
+      /* console.log(myPersonStatus.data); */
+      res.send({
+        data: myPersonStatus.data,
+        message: "ok",
+      });
     } else {
       res.send(authFailResponse(authUser));
     }
   } catch (err) {
     log({
       level: "error",
-      message: "Error occurred while updating perk.",
+      message: "Error occurred while getting personstatus.",
+      function: "personstatus",
+      error_code: 500,
+      error_stack: err.stack,
+    });
+    res.send({
+      message: "Error getting personstatus.",
+      code: 500,
+    });
+  }
+});
+
+router.post("/upsertinoutperson", async (req, res) => {
+  try {
+    /* console.log("Save status called");  */
+    const authUser = await Auth2(req, false, res); // does NOT require Radmin
+    if (authUser.code === 200) {
+      const params = req.body;
+      const perk = await inout.upsertInOutPerson(params, authUser);
+      res.send({
+        /* data: inoutperson, */
+        message:  "ok",
+        /* code: inoutpersoninoutperson.code || 200, */
+      });
+    } else {
+      res.send(authFailResponse(authUser));
+    }
+  } catch (err) {
+    log({
+      level: "error",
+      message: "Error occurred while updating inout person.",
       function: "upsertinoutperson",
       error_code: 500,
       error_stack: err.stack,
@@ -4130,7 +4153,6 @@ router.post("/updateeventrating", async (req, res) => {
     const params = req.body;
     const response = await events.updateEventRating(params);
     res.send(response);
-
   } catch (err) {
     console.log(err.stack);
     res.send({
@@ -4172,10 +4194,7 @@ router.post("/checkuserisfriendornot", async (req, res) => {
     const authUser = await Auth2(req, false, res); // does not require Radmin
     if (authUser.code === 200) {
       const params = req.body;
-      const response = await people.checkUserIsFriendOrNot(
-        params,
-        authUser
-      );
+      const response = await people.checkUserIsFriendOrNot(params, authUser);
       res.send(response);
     } else {
       res.send(authFailResponse(authUser));

@@ -49,7 +49,7 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
 
   const saveStatus = async () => {
     try {
-    //  alert ('status value'+ status.current.value);
+      //  alert ('status value'+ status.current.value);
       let model;
       model = await getFormModel(form1.current, model, setLoading);
       if (!model) {
@@ -65,7 +65,7 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
         model: model,
         api: "upsertinoutperson",
       });
-      
+
       setTimeout(function () {
         //  navigate(`/group/${groupId}`);
         window.location.reload();
@@ -88,7 +88,7 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
           <form ref={form1} noValidate className="p-top2">
             <label htmlFor="status" className="m-top-05">
               <div className="brand-overline">Status*</div>
-              <input
+              {/* <input
                 ref={status}
                 id="statusName"
                 name="status"
@@ -101,14 +101,18 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
                   //setCase(status, "upper");
                   setDirty(true);
                 }}
-              />
-              {/*  <div>
-                  <Dropdown
-                    options={typeTagsList}
-                    onSelect={reloadOrgs}
-                    selected={selectedType}
-                  />
-                </div>  */}
+              /> */}
+              <select
+                ref={status}
+                id="statusName"
+                name="status"
+                /* {(input)=> this.menu = input} */
+              >
+                <option value="Select">SELECT A STATUS</option>
+                <option value="In Office">In Office</option>
+                <option value="PTO">PTO</option>
+                <option value="Working Remotly">Working Remotly</option>
+              </select>
             </label>
 
             <label htmlFor="notes" className="m-top-05">
@@ -123,7 +127,7 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
                 placeholder="Enter Any Necessary Notes"
                 defaultValue={user?.Notes}
                 /*  autoFocus */
-                required
+                /* required */
                 onChange={() => {
                   //setCase(notes, "upper");
                   setDirty(true);

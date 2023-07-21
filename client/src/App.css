@@ -1892,6 +1892,7 @@ span.refresh-link {
   font-size:smaller;
 }
 
+/* FOLLOWING SECTIONS SET BACKGROUND ON ROW BASED ON STATUS */
 .remote {
   background-color: #d1f3fc;
 }

@@ -78,7 +78,7 @@ function InOutRow({
               //setShowEditStatus(true);
             }}
           >
-            <i className="fa fa-edit neutral-5" />
+            <i className="fa fa-edit neutral-5 radish-icon-24" />
           </button>
         </div>
       </div>

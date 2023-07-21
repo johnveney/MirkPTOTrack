@@ -111,7 +111,7 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
                 <option value="Select">SELECT A STATUS</option>
                 <option value="In Office">In Office</option>
                 <option value="PTO">PTO</option>
-                <option value="Working Remotly">Working Remotly</option>
+                <option value="Remote">Remote</option>
               </select>
             </label>
 

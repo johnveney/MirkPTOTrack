@@ -60,7 +60,7 @@ function InOut() {
     <div ref={outerWrapper} className="main-panel p-bottom-4 bg-neutral-1 ">
       <header className="p-1 p-top-2 flex-align-items-center bg-white">
         <h2>
-          <button
+         {/*  <button
             type="button"
             title="Go back to home"
             className="back-chevron"
@@ -75,7 +75,7 @@ function InOut() {
             }}
           >
             <span className="fas fa-chevron-left m-right-1"></span>
-          </button>{" "}
+          </button>{" "} */}
           Employee&nbsp;Status&nbsp;Board
         </h2>
         <button

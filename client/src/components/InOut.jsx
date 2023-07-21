@@ -13,19 +13,12 @@ function InOut() {
   const [errMessage, setErrMessage] = useState();
   const wrapper = useRef(null);
   const outerWrapper = useRef(null);
-  // const [errorMsg] = useState(null);
   const colspan = 4;
-  // const [iReverse, setIReverse]=0;
 
   const getInoutBoard = useCallback(async () => {
     try {
-      //mainWrapper.current.classList.remove("fade-in");
       setLoading(true);
-      //  setAddPlaceType(false);
-      //  setPlaceTypeId(null);
       const model = {
-        //aLocation : "CORPORATE",
-        //aLocation: "ORRVILLE OHIO",
       };
       const myInOutBoard = await baseClient.APIPost({
         model: model,
@@ -45,13 +38,11 @@ function InOut() {
       }
       setTimeout(() => {
         setLoading(false);
-        //fadeIn(mainWrapper.current);
       }, 400);
     } catch (err) {
       setErrMessage(err.message);
       setTimeout(() => {
         setLoading(false);
-        //  fadeIn(mainWrapper.current);
       }, 400);
     }
   }, []);

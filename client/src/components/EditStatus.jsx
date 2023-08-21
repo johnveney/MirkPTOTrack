@@ -15,6 +15,13 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
   const status = useRef(aStatus);
   const notes = useRef();
 
+  const options = [
+    { value: "Select, label: Select A Status" },
+    { value: "In Office", label: "In Office" },
+    { value: "PTO", label: "PTO" },
+    { value: "Remote", label: "Remote" },
+  ];
+
   useEffect(() => {
     const getData = async () => {
       //ADD DATA CALL STUFF HERE
@@ -102,13 +109,8 @@ function EditStatus({ userID = "", aStatus = "", aNotes = "" }) {
                   setDirty(true);
                 }}
               /> */}
-              <select
-                ref={status}
-                id="statusName"
-                name="status"
-                /* {(input)=> this.menu = input} */
-              >
-                <option value="Select">SELECT A STATUS</option>
+              <select ref={status} id="statusName" name="status" >
+                {/* <option value="Select">SELECT A STATUS</option> */}
                 <option value="In Office">In Office</option>
                 <option value="PTO">PTO</option>
                 <option value="Remote">Remote</option>
